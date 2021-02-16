@@ -23,23 +23,20 @@
         android:layout_marginTop="96dp"
         android:layout_marginBottom="225dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="274dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="471dp"
         tools:text="@string/txtBradley" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="478dp"
         android:layout_marginBottom="234dp"
         android:text="@string/txtBrody"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.547"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
