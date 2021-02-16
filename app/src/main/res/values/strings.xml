@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">The Red Alliance</string>
     <string name="txtBradley">Bradley Was here!</string>
+    <string name="txtBrody">It is I, Brody!</string>
 </resources>
