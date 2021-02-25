@@ -2,6 +2,7 @@ package team.cake.theredalliance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,14 +22,15 @@ public class DisplayGroup1Activity extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/csv");
         startActivityForResult(intent, FILE_REQUEST);
-        Uri uri1 = intent.getData();
-        if(uri1 == null) {
-            Toast.makeText(getApplicationContext(),"uri is null",Toast.LENGTH_LONG).show();
-        }
     }
+    //@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
+            if (uri == null) {
+                Toast.makeText(getApplicationContext(), "uri is null", Toast.LENGTH_LONG).show();
+            }
             String filePath = uri.getPath();
             System.out.println("Please work " + filePath);
         }
