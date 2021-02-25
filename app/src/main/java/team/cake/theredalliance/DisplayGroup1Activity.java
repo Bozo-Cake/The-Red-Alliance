@@ -40,4 +40,9 @@ public class DisplayGroup1Activity extends AppCompatActivity {
             }
         }
     }
+
+    public void viewSurveyPage(View view) {
+        Intent intent = new Intent(this, SurveyActivity.class);
+        startActivity(intent);
+    }
 }
