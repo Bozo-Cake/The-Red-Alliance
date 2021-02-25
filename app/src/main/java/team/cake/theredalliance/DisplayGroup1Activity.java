@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,10 +30,14 @@ public class DisplayGroup1Activity extends AppCompatActivity {
         if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             if (uri == null) {
-                Toast.makeText(getApplicationContext(), "uri is null", Toast.LENGTH_LONG).show();
+                Log.d("FIND_PATH","Uri is null");
             }
-            String filePath = uri.getPath();
-            System.out.println("Please work " + filePath);
+            else {
+                String filePath = uri.getPath();
+                Log.d("FIND_PATH",filePath);
+                ConfigReader configReader = new ConfigReader(this, filePath);
+                configReader.start();
+            }
         }
     }
 }
