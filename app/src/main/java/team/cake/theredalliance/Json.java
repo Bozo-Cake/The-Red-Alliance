@@ -1,5 +1,7 @@
 package team.cake.theredalliance;
 
+import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -25,6 +27,22 @@ public class Json {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void writeJsonSharedPref(String contents, String filename, SharedPreferences sprefs){
+        SharedPreferences.Editor prefsEditor = sprefs.edit();
+        GsonBuilder builder = new GsonBuilder();
+        Gson _json = builder.create();
+
+        prefsEditor.putString(filename, String.valueOf(_json.toJson(contents)));
+        prefsEditor.commit();
+    }
+    public String readJsonSharedPref(String filename, SharedPreferences sprefs){
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson _json = builder.create();
+
+        String json = sprefs.getString(filename, "");
+        return _json.fromJson(json, String.class);
     }
     public String readJson(String filename){
         String contents = "Default String";
