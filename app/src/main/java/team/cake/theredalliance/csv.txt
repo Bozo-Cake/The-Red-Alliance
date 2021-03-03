@@ -13,3 +13,8 @@ Order
 3. Slider
 
 TODO /Questions: Java Form Creation, automation, save object to CSV examples
+
+-Generate UI objects from Java
+-Parse config file (comma, newline)
+-custom view objects?
+-Survey objects based on standard HTML5 input fields
