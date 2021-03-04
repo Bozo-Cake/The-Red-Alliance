@@ -49,6 +49,7 @@ public class ConfigReader {//ToDo: Move to separate thread, currently running on
         });
     }
 
+    //https://developer.android.com/training/data-storage/shared/documents-files#open
     private void readTextFromUri() throws IOException {
         try (InputStream inputStream =
                      mee.get().getContentResolver().openInputStream(_uri);

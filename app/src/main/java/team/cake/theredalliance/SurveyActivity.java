@@ -40,6 +40,7 @@ public class SurveyActivity extends AppCompatActivity {
         //addCheckBox();
     }
 
+    //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
         CoordinatorLayout layout = new CoordinatorLayout(this);
         for (int i = 0; i < 3; i++) {
