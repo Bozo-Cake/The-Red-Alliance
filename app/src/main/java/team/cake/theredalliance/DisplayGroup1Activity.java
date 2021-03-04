@@ -21,12 +21,13 @@ public class DisplayGroup1Activity extends AppCompatActivity {
     public void getConfigFile(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/csv");
+        intent.setType("text/csv");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
     }
     //@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("data", data.toString());
         if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             if (uri == null) {

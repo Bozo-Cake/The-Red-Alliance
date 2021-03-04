@@ -36,16 +36,16 @@ public class SurveyActivity extends AppCompatActivity {
         });
         //ToDo: Research/Spike Palette-> (Layouts, Containers)
         //addButton();//example showing buttons
-        addCheckBox();
+        //addCheckBox();
     }
 
     private void addButton() {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             LinearLayout row = new LinearLayout(this);
             row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 1; j++) {
                 Button btnTag = new Button(this);
                 btnTag.setLayoutParams(new LinearLayout.LayoutParams
                         (LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -60,22 +60,6 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void addCheckBox() {
-        NestedScrollView layout = (NestedScrollView) findViewById(R.id.scrollOne);
-        layout.setLayoutParams(new ScrollView.LayoutParams(ScrollView.LayoutParams.WRAP_CONTENT, ScrollView.LayoutParams.WRAP_CONTENT));
-        for (int i = 0; i < 50; i++) {
-            LinearLayout row = new LinearLayout(this);
-            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            for (int j = 0; j < 2; j++) {
-                CheckBox item = new CheckBox(this);
-                item.setLayoutParams(new LinearLayout.LayoutParams
-                        (LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT));
-                item.setText("Check Box " + (j + 1 + (i * 4)));
-                item.setId(j + 1 + (i * 4));
-                row.addView(item);
-            }
-            layout.addView(row);
-        }
-        setContentView(layout);
+        //
     }
 }
