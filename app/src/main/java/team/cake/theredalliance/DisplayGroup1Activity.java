@@ -44,15 +44,15 @@ public class DisplayGroup1Activity extends AppCompatActivity {
 //                //https://stackoverflow.com/questions/30789116/implementing-a-file-picker-in-android-and-copying-the-selected-file-to-another-l
 //                String file = "/sdcard/" + filePath.split(":")[1];
 //                Log.d("FIND_PATH",file);
-                try {
-                    String surveyCSV = readTextFromUri(uri);
-                    TextView output = findViewById(R.id.outPutConfig);
-                    output.setText(surveyCSV);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //ConfigReader configReader = new ConfigReader(this, file);
-                //configReader.start();
+//                try {
+//                    String surveyCSV = readTextFromUri(uri);
+//                    TextView output = findViewById(R.id.outPutConfig);
+//                    output.setText(surveyCSV);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+                ConfigReader configReader = new ConfigReader(this, uri);
+                configReader.start();
 
             }
         }
