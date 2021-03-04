@@ -25,7 +25,6 @@ public class ConfigReader {
         _numEntires = 0;
     }
     public void start() {
-        File file = new File(_filePath);
         try {
             Log.d("Config_Reader", "About to read config file");
             FileReader fileReader = new FileReader(_filePath);
