@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 public class DisplayGroup1Activity extends AppCompatActivity {
     int FILE_REQUEST = 1;
@@ -21,7 +20,7 @@ public class DisplayGroup1Activity extends AppCompatActivity {
     public void getConfigFile(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/csv");//text/csv
+        intent.setType("text/*");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
     }
     //@Override
@@ -35,8 +34,10 @@ public class DisplayGroup1Activity extends AppCompatActivity {
             }
             else {
                 String filePath = uri.getPath();
-                Log.d("FIND_PATH",filePath);
-                ConfigReader configReader = new ConfigReader(this, filePath);
+                //https://stackoverflow.com/questions/30789116/implementing-a-file-picker-in-android-and-copying-the-selected-file-to-another-l
+                String file = "/sdcard/" + filePath.split(":")[1];
+                Log.d("FIND_PATH",file);
+                ConfigReader configReader = new ConfigReader(this, file);
                 configReader.start();
             }
         }
