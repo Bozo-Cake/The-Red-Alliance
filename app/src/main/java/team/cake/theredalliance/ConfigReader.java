@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigReader {
+public class ConfigReader {//ToDo: Move to separate thread, currently running on UI Thread?
     String _filePath;
     List<String> _entries = new ArrayList<>();
     int _numbEntries;

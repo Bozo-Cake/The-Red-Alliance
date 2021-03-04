@@ -8,6 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class DisplayGroup1Activity extends AppCompatActivity {
     int FILE_REQUEST = 1;
@@ -33,12 +40,20 @@ public class DisplayGroup1Activity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                String filePath = uri.getPath();
-                //https://stackoverflow.com/questions/30789116/implementing-a-file-picker-in-android-and-copying-the-selected-file-to-another-l
-                String file = "/sdcard/" + filePath.split(":")[1];
-                Log.d("FIND_PATH",file);
-                ConfigReader configReader = new ConfigReader(this, file);
-                configReader.start();
+//                String filePath = uri.getPath();
+//                //https://stackoverflow.com/questions/30789116/implementing-a-file-picker-in-android-and-copying-the-selected-file-to-another-l
+//                String file = "/sdcard/" + filePath.split(":")[1];
+//                Log.d("FIND_PATH",file);
+                try {
+                    String surveyCSV = readTextFromUri(uri);
+                    TextView output = findViewById(R.id.outPutConfig);
+                    output.setText(surveyCSV);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //ConfigReader configReader = new ConfigReader(this, file);
+                //configReader.start();
+
             }
         }
     }
@@ -46,5 +61,19 @@ public class DisplayGroup1Activity extends AppCompatActivity {
     public void viewSurveyPage(View view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
+    }
+
+    private String readTextFromUri(Uri uri) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (InputStream inputStream =
+                     getContentResolver().openInputStream(uri);
+             BufferedReader reader = new BufferedReader(
+                     new InputStreamReader(Objects.requireNonNull(inputStream)))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        }
+        return stringBuilder.toString();
     }
 }
