@@ -4,14 +4,17 @@ import android.widget.LinearLayout;
 
 import java.util.Map;
 
-public class Survey_Text_Box extends Field implements Askable {
-    public Survey_Text_Box(Map<String,String> map) {
+public class Survey_Checkboxes extends Field implements Askable{
+    public Survey_Checkboxes(Map<String, String> map) {
         /*
         List desired parameters to be required or optional to be included in config.csv here:
         Excludes parameters handled by parent class [Field]: name, type
-        -Max Length (optional)
+        -List<String> selections    (required)
+        -Number of checkboxes       (required)
+        -default selections?        (optional)
         */
-        //ToDo: Extract TextBox data here.
+
+        //ToDo: Define .csv List<String> of values formatting. Extract here.
 
         //pass on remaining items to parent class.
         super(map);

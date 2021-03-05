@@ -1,22 +1,23 @@
 package team.cake.theredalliance;
 
 import java.util.List;
+import java.util.Map;
 
-public abstract class Field<T> {
+public abstract class Field {
     String _name;
     SurveyQuestionsType _type;
-    T _data;
-    List<String> _extras;
+    Map<String,String> _extras;
 
-    Field(String name, SurveyQuestionsType type, T data, List<String> extras) {
-        _name = name;
-        _type = type;
-        _data = data;
-        _extras = extras;
+    Field(Map<String,String> map) {
+        _name = map.get("name");
+        map.remove("name");
+        _type = SurveyQuestionsType.valueOf(map.get("type"));
+        map.remove("type");
+        _extras = map;
+        //ToDo: throw exception in any Field object constructor for ConfigReader to disregard faulty file
     }
 
     String getName() { return _name; }
     SurveyQuestionsType getType() { return _type; }
-    T getData() { return _data; }
-
+    Map<String,String> getExtras() { return _extras; }
 }

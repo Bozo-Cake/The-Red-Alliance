@@ -58,7 +58,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         _questions = new ArrayList<>();
         for (int i = 0; i < _numbEntries; i++) {
             //Parse each object
-            _questions.add(parseEntry(_entries.get(i)));
+            _questions.add(parseEntryIntoObject(_entries.get(i)));
         }
 
         //serialize to GSON
@@ -92,7 +92,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         }
     }
 
-    private Field parseEntry(String entry) {
+    private Field parseEntryIntoObject(String entry) {
         /******************************************************
             Read string (single line from config file)
             Split on commas with zero or more whitespace, and equal signs with any surrounding whitespace.
@@ -106,7 +106,26 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
          Map<String,String> map = Splitter.on(",").trimResults().withKeyValueSeparator(":").split(entry);
 
         //Create java object representation
-        //SurveyQuestionsType q = (SurveyQuestionsType) map.get("type");
+        SurveyQuestionsType q = SurveyQuestionsType.valueOf(map.get("type"));
+        switch (q) {
+            //Can this be moved into enum constructors?
+            case TEXT_BOX:
+                return new Survey_Text_Box(map);
+            case COUNTER:
+                return new Survey_Counter(map);
+            case SLIDER:
+                return new Survey_Slider(map);
+            //The following three are redundant to each other
+            //ToDO:(group into a single class with displayType parameter?)
+            case CHECKBOXES:
+                return new Survey_Checkboxes(map);
+            case SWITCHES:
+                return new Survey_Switches(map);
+            case RADIO:
+                return new Survey_Radio(map);
+            default:
+                Log.e("parseEntryIntoObject", "Unable to create object");
+        }
 
         //return abstract object
 
