@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.common.base.Splitter;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -16,6 +18,7 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class ConfigReader implements Runnable {//ToDo: Move to separate thread, currently running on UI Thread?
@@ -90,11 +93,23 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
     }
 
     private Field parseEntry(String entry) {
-        //Read string (single line from config file)
+        /******************************************************
+            Read string (single line from config file)
+            Split on commas with zero or more whitespace, and equal signs with any surrounding whitespace.
+            ['\s' means whitespace using an additional escape character -> '\\s' to work
+            '*' means zero or more times -> '\\s*' any amount of whitespace
+            https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+            Update: Unable to get RegularExpressions working in Splitter class. Relying on exporting
+            csv with no spaces from Excel. Excel will also hold template file to export csv.
+         ToDo: Develop Excel Template file with drop down list for type, use file to export into csv.
+         *****************************************************/
+         Map<String,String> map = Splitter.on(",").trimResults().withKeyValueSeparator(":").split(entry);
 
         //Create java object representation
+        //SurveyQuestionsType q = (SurveyQuestionsType) map.get("type");
 
         //return abstract object
+
         return null;
     }
 }

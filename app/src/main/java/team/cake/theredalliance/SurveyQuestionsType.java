@@ -1,6 +1,6 @@
 package team.cake.theredalliance;
 
-public enum SurveyQuestions {
+public enum SurveyQuestionsType {
     TEXT_BOX,
     COUNTER,
     SLIDER,
