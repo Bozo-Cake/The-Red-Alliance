@@ -6,6 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".DisplayGroup2Activity">
 
+    <Button
+        android:id="@+id/loadInterview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getInterview"
+        android:text="@string/loadInterviewbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoadTeamName" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/LoadTeamName"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:hint="@string/teamtxt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveInterview" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/TeamName"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:hint="@string/teamtxt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <Button
+        android:id="@+id/saveInterview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="saveInterview"
+        android:text="@string/saveInterviewbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RobotName"
+        app:layout_constraintVertical_bias="0.212" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -27,38 +75,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/JsonName"
+        android:id="@+id/RobotName"
         android:layout_width="232dp"
         android:layout_height="52dp"
-        android:hint="@string/testJsontxt"
+        android:hint="@string/robottxt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.269" />
 
-    <Button
-        android:id="@+id/toJson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sendToJson"
-        android:text="@string/tojsonbtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/JsonName"
-        app:layout_constraintVertical_bias="0.142" />
-
-    <Button
-        android:id="@+id/fromJson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="pullFromJson"
-        android:text="@string/fromjsonbtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toJson"
-        app:layout_constraintVertical_bias="0.176" />
 </androidx.constraintlayout.widget.ConstraintLayout>

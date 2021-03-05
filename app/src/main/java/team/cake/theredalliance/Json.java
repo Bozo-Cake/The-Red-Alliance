@@ -58,5 +58,21 @@ public class Json {
         }
         return contents;
     }
+    public void saveInterview(interview inter, String key, SharedPreferences SP){
+        SharedPreferences.Editor prefsEditor = SP.edit();
+        GsonBuilder builder = new GsonBuilder();
+        Gson _json = builder.create();
 
+        prefsEditor.putString(key, String.valueOf(_json.toJson(inter)));
+        prefsEditor.commit();
+    }
+    public interview readInterview(String key, SharedPreferences SP){
+        interview contents = null;
+        GsonBuilder builder = new GsonBuilder();
+        Gson _json = builder.create();
+
+        String json = SP.getString(key, "");
+        contents = _json.fromJson(json, interview.class);
+        return contents;
+    }
 }
