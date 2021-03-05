@@ -40,10 +40,9 @@ public class DisplayGroup1Activity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-//              //ToDo: Run the following on a separate thread!
                 ConfigReader configReader = new ConfigReader(this, uri);
-                configReader.start();
-
+                Thread thread = new Thread(configReader);
+                thread.start();
             }
         }
     }
@@ -51,19 +50,5 @@ public class DisplayGroup1Activity extends AppCompatActivity {
     public void viewSurveyPage(View view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
-    }
-
-    private String readTextFromUri(Uri uri) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (InputStream inputStream =
-                     getContentResolver().openInputStream(uri);
-             BufferedReader reader = new BufferedReader(
-                     new InputStreamReader(Objects.requireNonNull(inputStream)))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-        }
-        return stringBuilder.toString();
     }
 }

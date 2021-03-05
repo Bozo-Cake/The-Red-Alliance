@@ -11,6 +11,9 @@ Order
 1. TextBox (string/int)
 2. Inc/Dec-Counter
 3. Slider
+4. Radio
+5. Checkboxes
+6. Switches
 
 TODO /Questions: Java Form Creation, automation, save object to CSV examples
 
