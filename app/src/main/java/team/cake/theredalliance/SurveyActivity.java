@@ -9,9 +9,9 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -42,8 +42,15 @@ public class SurveyActivity extends AppCompatActivity {
 
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
-        CoordinatorLayout layout = new CoordinatorLayout(this);
-        for (int i = 0; i < 3; i++) {
+        CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
+        ScrollView scrollSurvey = new ScrollView(this);
+        scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
+        scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        LinearLayout survey = new LinearLayout(this);
+        survey.setOrientation(LinearLayout.VERTICAL);
+        //survey.generateViewId(survey);
+        //survey.setOrientation(LinearLayout.VERTICAL);
+        for (int i = 0; i < 50; i++) {
             LinearLayout row = new LinearLayout(this);
             row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             for (int j = 0; j < 4; j++) {
@@ -55,8 +62,14 @@ public class SurveyActivity extends AppCompatActivity {
                 btnTag.setId(j + 1 + (i * 4));
                 row.addView(btnTag);
             }
-            layout.addView(row);
+            survey.addView(row);
         }
+        scrollSurvey.addView(survey);
+        layout.addView(scrollSurvey);
+
+//        if (layout.getParent() != null) {
+//            ((ViewGroup) layout.getParent()).removeView(layout);
+//        }
         setContentView(layout);
     }
 
