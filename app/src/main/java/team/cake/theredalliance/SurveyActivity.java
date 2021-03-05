@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class SurveyActivity extends AppCompatActivity {
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
         CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
-        ScrollView scrollSurvey = new ScrollView(this);
+        NestedScrollView scrollSurvey = new NestedScrollView(this);
         scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
         scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
         LinearLayout survey = new LinearLayout(this);
