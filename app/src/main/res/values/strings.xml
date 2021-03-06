@@ -8,4 +8,9 @@
     <string name="fromjsonbtn">From JSON</string>
     <string name="saveInterviewbtn">Save</string>
     <string name="loadInterviewbtn">Load</string>
+    <string name="txtBrody1"></string>
+    <string name="title_activity_survey">Team Name</string>
+    <string name="title_activity_scrolling">Team Scrolling</string>
+    <string name="action_settings">Settings</string>
+    <string name="Survey_Questions">com.team.cake.savedConfigFile</string>
 </resources>
