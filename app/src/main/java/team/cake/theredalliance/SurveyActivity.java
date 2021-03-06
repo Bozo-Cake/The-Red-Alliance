@@ -53,10 +53,10 @@ public class SurveyActivity extends AppCompatActivity {
         //survey.setOrientation(LinearLayout.VERTICAL);
         //survey.generateViewId(survey);
         //survey.setOrientation(LinearLayout.VERTICAL);
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             LinearLayout row = new LinearLayout(this);
             row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 2; j++) {
                 Button btnTag = new Button(this);
                 btnTag.setLayoutParams(new LinearLayout.LayoutParams
                         (LinearLayout.LayoutParams.WRAP_CONTENT,

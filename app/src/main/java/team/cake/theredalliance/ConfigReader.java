@@ -103,7 +103,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
             csv with no spaces from Excel. Excel will also hold template file to export csv.
          ToDo: Develop Excel Template file with drop down list for type, use file to export into csv.
          *****************************************************/
-         Map<String,String> map = Splitter.on(",").trimResults().withKeyValueSeparator(":").split(entry);
+        Map<String,String> map = Splitter.on(",").trimResults().withKeyValueSeparator(":").split(entry);
 
         //Create java object representation
         SurveyQuestionsType q = SurveyQuestionsType.valueOf(map.get("type"));

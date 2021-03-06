@@ -1,0 +1,3 @@
+type:COUNTER,name:timer
+type:SLIDER,name:defense
+type:RADIO,name:something
