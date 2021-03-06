@@ -40,7 +40,7 @@ public class SurveyActivity extends AppCompatActivity {
         addButton();//example showing buttons
         //addCheckBox();
     }
-
+    //added this
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
         CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
