@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -29,17 +30,27 @@ public class DisplayGroup2Activity extends AppCompatActivity {
         EditText robotNameElement = findViewById(R.id.RobotName);
         String robotNametext = robotNameElement.getText().toString();
         //TODO We need to make sure we capture all of the UI elements for the interview.
-        //TODO Make sure all shared preference keys are lowercase.
+
+        //Change inputs to lower case.
+        teamNametext.toLowerCase();
+        robotNametext.toLowerCase();
+
         interview inter = new interview(teamNametext, robotNametext, 200, 96);
         _json.saveInterview(inter, teamNametext, _privateSP);
-        //TODO Add toast here telling user that the team was saved.
+
+        //Toast letting the user know the team was saved.
+        Toast.makeText(getApplicationContext(),"Team Saved",Toast.LENGTH_SHORT).show();
+
         teamNameElement.setText("");
         robotNameElement.setText("");
     }
     public void getInterview(View view){
         EditText teamNameElement = findViewById(R.id.LoadTeamName);
         String teamNametext = teamNameElement.getText().toString();
-        //TODO Make sure all shared preference keys are lowercase.
+
+        //Make team name input lower case.
+        teamNametext.toLowerCase();
+
         interview inter = _json.readInterview(teamNametext, _privateSP);
         EditText teamName = findViewById(R.id.TeamName);
         //TODO make sure inter is not null before trying to set anything.
