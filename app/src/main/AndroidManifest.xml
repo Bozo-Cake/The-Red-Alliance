@@ -14,10 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheRedAlliance">
         <activity
-            android:name=".ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/Theme.TheRedAlliance.NoActionBar"></activity>
-        <activity
             android:name=".SurveyActivity"
             android:label="@string/title_activity_survey"
             android:theme="@style/Theme.TheRedAlliance.NoActionBar" />
