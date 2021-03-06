@@ -44,11 +44,13 @@ public class SurveyActivity extends AppCompatActivity {
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
         CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
-        NestedScrollView scrollSurvey = new NestedScrollView(this);
-        scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
-        scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        LinearLayout survey = new LinearLayout(this);
-        survey.setOrientation(LinearLayout.VERTICAL);
+        NestedScrollView scrollSurvey = (NestedScrollView) findViewById(R.id.NestedScroll);
+        LinearLayout survey = (LinearLayout) findViewById(R.id.ScrollContainer);
+        //NestedScrollView scrollSurvey = new NestedScrollView(this);
+        //scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
+        //scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        //LinearLayout survey = new LinearLayout(this);
+        //survey.setOrientation(LinearLayout.VERTICAL);
         //survey.generateViewId(survey);
         //survey.setOrientation(LinearLayout.VERTICAL);
         for (int i = 0; i < 50; i++) {
@@ -65,8 +67,8 @@ public class SurveyActivity extends AppCompatActivity {
             }
             survey.addView(row);
         }
-        scrollSurvey.addView(survey);
-        layout.addView(scrollSurvey);
+        //scrollSurvey.addView(survey);
+        //layout.addView(scrollSurvey);
 
 //        if (layout.getParent() != null) {
 //            ((ViewGroup) layout.getParent()).removeView(layout);
