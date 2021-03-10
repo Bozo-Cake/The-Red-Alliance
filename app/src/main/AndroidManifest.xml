@@ -19,13 +19,13 @@
             android:theme="@style/Theme.TheRedAlliance.NoActionBar" />
         <activity android:name=".DisplayGroup2Activity" />
         <activity android:name=".DisplayGroup1Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
