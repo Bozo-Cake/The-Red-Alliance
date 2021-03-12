@@ -2,6 +2,7 @@ package team.cake.theredalliance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.Map;
 
-public class DisplayGroup2Activity extends AppCompatActivity {
+public class InterviewActivity extends AppCompatActivity {
     SharedPreferences _privateSP;
     Json _json;
     Map<String, ?> _keys;
@@ -19,12 +20,31 @@ public class DisplayGroup2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_group2);
+        setContentView(R.layout.activity_interview);
         _privateSP = getPreferences(MODE_PRIVATE);
         _json = new Json();
         _keys = _privateSP.getAll();
     }
-
+    public void survey(View view) {
+        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+        startActivity(intent);
+    }
+    public void interview(View view) {
+        Intent intent = new Intent(this, InterviewActivity.class);
+        startActivity(intent);
+    }
+    public void matches(View view) {
+        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+        startActivity(intent);
+    }
+    public void teams(View view) {
+        Intent intent = new Intent(this, InterviewActivity.class);
+        startActivity(intent);
+    }
+    public void main(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
     public void saveInterview(View view){
         EditText teamNameElement = findViewById(R.id.TeamName);
         String teamNametext = teamNameElement.getText().toString().toLowerCase();

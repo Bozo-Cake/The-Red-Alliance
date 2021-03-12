@@ -17,7 +17,8 @@
             android:name=".SurveyActivity"
             android:label="@string/title_activity_survey"
             android:theme="@style/Theme.TheRedAlliance.NoActionBar" />
-        <activity android:name=".DisplayGroup2Activity" />
+        <activity android:name=".InterviewActivity" />
+        <activity android:name=".TeamActivity" />
         <activity android:name=".DisplayGroup1Activity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

@@ -23,10 +23,10 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(getTitle());
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        //toolBarLayout.setTitle(getTitle());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,9 +43,10 @@ public class SurveyActivity extends AppCompatActivity {
     //added this
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
-        CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
-        NestedScrollView scrollSurvey = (NestedScrollView) findViewById(R.id.NestedScroll);
-        LinearLayout survey = (LinearLayout) findViewById(R.id.ScrollContainer);
+        //CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
+        //NestedScrollView scrollSurvey = (NestedScrollView) findViewById(R.id.NestedScroll);
+        ScrollView layout = (ScrollView) findViewById(R.id.SurveyLayout);
+        LinearLayout survey = (LinearLayout) findViewById(R.id.scrollContainer);
         //NestedScrollView scrollSurvey = new NestedScrollView(this);
         //scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
         //scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
