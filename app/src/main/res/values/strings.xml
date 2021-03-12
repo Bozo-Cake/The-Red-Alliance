@@ -13,11 +13,12 @@
     <string name="title_activity_scrolling">Team Scrolling</string>
     <string name="action_settings">Settings</string>
     <string name="Survey_Questions">com.team.cake.savedConfigFile</string>
+    <string name="splash_screen_loading">Loading...</string>
+    <string name="splash_screen_title">Welcome to the Red Alliance App!</string>
     <string name="Interview">Interview</string>
     <string name="Survey">Survey</string>
     <string name="Teams">Teams</string>
     <string name="Matches">Matches</string>
     <string name="Settings">Settings</string>
     <string name="Main">Main</string>
-
 </resources>

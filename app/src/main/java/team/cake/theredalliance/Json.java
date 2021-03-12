@@ -1,6 +1,7 @@
 package team.cake.theredalliance;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Json {
+    String className = "JSON";
 
     Json(){
 
@@ -23,6 +25,7 @@ public class Json {
             FileWriter writer = new FileWriter(filename);
             writer.write(String.valueOf(_json.toJson(contents)));
             writer.close();
+            Log.i(className, "Successfully saved data");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -56,6 +59,7 @@ public class Json {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        Log.i(className, "Successfully read data");
         return contents;
     }
     public void saveInterview(interview inter, String key, SharedPreferences SP){
@@ -65,6 +69,7 @@ public class Json {
 
         prefsEditor.putString(key, String.valueOf(_json.toJson(inter)));
         prefsEditor.commit();
+        Log.i(className, "Successfully saved Interview data");
     }
     public interview readInterview(String key, SharedPreferences SP){
         interview contents = null;
@@ -73,6 +78,7 @@ public class Json {
 
         String json = SP.getString(key, "");
         contents = _json.fromJson(json, interview.class);
+        Log.i(className, "Successfully Loaded Interview data");
         return contents;
     }
 }
