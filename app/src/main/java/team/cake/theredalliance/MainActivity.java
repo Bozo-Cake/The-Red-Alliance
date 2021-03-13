@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DisplayGroup2Activity.class);
         startActivity(intent);
     }
+
+    public void TeamsListPage(View view) {
+        Intent intent = new Intent(this, TeamsList.class);
+        startActivity(intent);
+    }
 }
