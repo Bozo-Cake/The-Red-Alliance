@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = new Intent(this, TeamsList.class);
+        startActivity(intent);
     }
     public void group1DevPage(View view) {
         Intent intent = new Intent(this, DisplayGroup1Activity.class);
