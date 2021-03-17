@@ -6,18 +6,19 @@
     android:id="@+id/interview_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InterviewActivity">
+    tools:context=".MatchActivity">
 
     <include
-        layout="@layout/content_interview"
+        layout="@layout/content_match"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view_interview"
+        android:id="@+id/navigation_view_Match"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:clipToPadding="false"
         app:menu="@menu/main_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

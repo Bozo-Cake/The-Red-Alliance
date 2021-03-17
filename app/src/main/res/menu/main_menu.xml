@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:onClick="main"
+            android:title="@string/Main" />
+        <item
+            android:id="@+id/nav_teams"
+            android:onClick="teams"
+            android:title="@string/Teams" />
+        <item
+            android:id="@+id/nav_survey"
+            android:onClick="survey"
+            android:title="@string/Survey" />
+        <item
+            android:id="@+id/nav_interview"
+            android:onClick="interview"
+            android:title="@string/Interview" />
+        <item
+            android:id="@+id/nav_matches"
+            android:onClick="matches"
+            android:title="@string/Matches" />
+    </group>
+</menu>

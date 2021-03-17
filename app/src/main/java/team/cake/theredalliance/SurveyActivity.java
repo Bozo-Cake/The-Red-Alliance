@@ -1,20 +1,13 @@
 package team.cake.theredalliance;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -37,16 +30,41 @@ public class SurveyActivity extends AppCompatActivity {
             }
         });
         //ToDo: Research/Spike Palette-> (Layouts, Containers)
-        addButton();//example showing buttons
+        //addButton();//example showing buttons
         //addCheckBox();
+    }
+    public void survey(MenuItem view) {
+        Intent intent = new Intent(this, SurveyActivity .class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    public void interview(MenuItem view) {
+        Intent intent = new Intent(this, InterviewActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    public void matches(MenuItem view) {
+        Intent intent = new Intent(this, MatchActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    public void teams(MenuItem view) {
+        Intent intent = new Intent(this, TeamActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    public void main(MenuItem view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
     //added this
     //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
     private void addButton() {
         //CoordinatorLayout layout = (CoordinatorLayout) findViewById(R.id.SurveyLayout);
         //NestedScrollView scrollSurvey = (NestedScrollView) findViewById(R.id.NestedScroll);
-        ScrollView layout = (ScrollView) findViewById(R.id.SurveyLayout);
-        LinearLayout survey = (LinearLayout) findViewById(R.id.scrollContainer);
+        //ScrollView layout = (ScrollView) findViewById(R.id.toolbar);
+        //LinearLayout survey = (LinearLayout) findViewById(R.id.toolbar);
         //NestedScrollView scrollSurvey = new NestedScrollView(this);
         //scrollSurvey.setLayoutParams(new LinearLayout.MarginLayoutParams(500, 500));
         //scrollSurvey.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT));
@@ -66,7 +84,7 @@ public class SurveyActivity extends AppCompatActivity {
                 btnTag.setId(j + 1 + (i * 4));
                 row.addView(btnTag);
             }
-            survey.addView(row);
+            //survey.addView(row);
         }
         //scrollSurvey.addView(survey);
         //layout.addView(scrollSurvey);
@@ -74,7 +92,7 @@ public class SurveyActivity extends AppCompatActivity {
 //        if (layout.getParent() != null) {
 //            ((ViewGroup) layout.getParent()).removeView(layout);
 //        }
-        setContentView(layout);
+        //setContentView(layout);
     }
 
     private void addCheckBox() {

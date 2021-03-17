@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,24 +26,29 @@ public class InterviewActivity extends AppCompatActivity {
         _json = new Json();
         _keys = _privateSP.getAll();
     }
-    public void survey(View view) {
-        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+    public void survey(MenuItem view) {
+        Intent intent = new Intent(this, SurveyActivity .class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void interview(View view) {
+    public void interview(MenuItem view) {
         Intent intent = new Intent(this, InterviewActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void matches(View view) {
-        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+    public void matches(MenuItem view) {
+        Intent intent = new Intent(this, MatchActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void teams(View view) {
-        Intent intent = new Intent(this, InterviewActivity.class);
+    public void teams(MenuItem view) {
+        Intent intent = new Intent(this, TeamActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void main(View view) {
+    public void main(MenuItem view) {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
     public void saveInterview(View view){
@@ -51,10 +57,6 @@ public class InterviewActivity extends AppCompatActivity {
         EditText robotNameElement = findViewById(R.id.RobotName);
         String robotNametext = robotNameElement.getText().toString();
         //TODO We need to make sure we capture all of the UI elements for the interview.
-
-        //Change inputs to lower case.
-        teamNametext.toLowerCase();
-        robotNametext.toLowerCase();
 
         interview inter = new interview(teamNametext, robotNametext, 200, 96);
         _json.saveInterview(inter, teamNametext, _privateSP);
@@ -68,9 +70,6 @@ public class InterviewActivity extends AppCompatActivity {
     public void getInterview(View view){
         EditText teamNameElement = findViewById(R.id.LoadTeamName);
         String teamNametext = teamNameElement.getText().toString().toLowerCase();
-
-        //Make team name input lower case.
-        teamNametext.toLowerCase();
 
         interview inter = _json.readInterview(teamNametext, _privateSP);
         EditText teamName = findViewById(R.id.TeamName);

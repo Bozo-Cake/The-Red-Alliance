@@ -1,86 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/team_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    tools:context=".TeamActivity">
 
-    <LinearLayout
+    <include
+        layout="@layout/content_team"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"/>
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar"/>
-
-        <Button
-            android:id="@+id/mainMenubtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="main"
-            android:text="@string/Main" />
-
-        <Button
-            android:id="@+id/teamsbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="teams"
-            android:text="@string/Teams" />
-
-        <Button
-            android:id="@+id/matchesbtn"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:onClick="matches"
-            android:text="@string/Matches" />
-
-        <Button
-            android:id="@+id/load2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="interview"
-            android:text="@string/Interview" />
-
-        <Button
-            android:id="@+id/open1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="survey"
-            android:text="@string/Survey" />
-
-        <TextView
-            android:id="@+id/textview"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:padding="6dp"
-            android:text="@string/longString"/>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@android:drawable/bottom_bar"
-            android:gravity="center_vertical">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Accept" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Refuse" />
-
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view_team"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:clipToPadding="false"
+        app:menu="@menu/main_menu"/>
+</androidx.drawerlayout.widget.DrawerLayout>
