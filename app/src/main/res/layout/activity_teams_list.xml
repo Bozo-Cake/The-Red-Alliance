@@ -37,37 +37,11 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/listOfTeams"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="177dp">
-
-        <LinearLayout
-            android:id="@+id/teamIcon"
-            android:layout_width="400px"
-            android:layout_height="400px"
-            android:layout_margin="20dp"
-            android:onClick="setTeamView"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/sammy_hammy" />
-
-            <TextView
-                android:id="@+id/teamIconName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:lineSpacingExtra="10sp"
-                android:text="4106 - ClickMe!"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </ScrollView>
+        tools:layout_editor_absoluteX="177dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
