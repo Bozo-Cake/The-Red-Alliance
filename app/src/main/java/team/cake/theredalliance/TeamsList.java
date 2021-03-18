@@ -21,6 +21,8 @@ public class TeamsList extends AppCompatActivity {
 
     public void setTeamView(View view) {
         Intent intent = new Intent(this, TeamViewer.class);
+        TextView number = view.findViewById(R.id.teamNumber);
+        intent.putExtra("NUMBER", number.getText());
         startActivity(intent);
     }
 
