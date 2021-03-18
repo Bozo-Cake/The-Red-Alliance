@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TheRedAlliance">
+        <activity android:name=".TeamViewer"></activity>
+        <activity android:name=".TeamsList" />
         <activity
             android:name=".MatchActivity"
             android:label="@string/title_activity_match" />
@@ -29,9 +31,5 @@
             android:name=".MainActivity"
             android:theme="@style/Theme.TheRedAlliance.NoActionBar" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
