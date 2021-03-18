@@ -26,7 +26,7 @@ public class MatchActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void teams(MenuItem view) {
-        Intent intent = new Intent(this, TeamsList.class);
+        Intent intent = new Intent(this, TeamActivity.class);
         startActivity(intent);
     }
     public void main(MenuItem view) {

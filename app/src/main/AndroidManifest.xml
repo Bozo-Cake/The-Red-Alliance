@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheRedAlliance">
         <activity android:name=".TeamViewer"></activity>
-        <activity android:name=".TeamsList" />
         <activity
             android:name=".MatchActivity"
             android:label="@string/title_activity_match" />
