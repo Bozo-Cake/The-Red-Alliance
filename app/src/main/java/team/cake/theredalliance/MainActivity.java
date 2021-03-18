@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void teams(View view) {
-        Intent intent = new Intent(this, TeamActivity.class);
+        Intent intent = new Intent(this, TeamsList.class);
         startActivity(intent);
     }
     public void main(View view) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void teams(MenuItem view) {
-        Intent intent = new Intent(this, TeamActivity.class);
+        Intent intent = new Intent(this, TeamsList.class);
         startActivity(intent);
     }
     public void main(MenuItem view) {

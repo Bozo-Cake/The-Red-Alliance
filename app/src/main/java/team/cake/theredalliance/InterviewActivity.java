@@ -42,7 +42,7 @@ public class InterviewActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void teams(MenuItem view) {
-        Intent intent = new Intent(this, TeamActivity.class);
+        Intent intent = new Intent(this, TeamsList.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
