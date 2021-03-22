@@ -1,3 +1,4 @@
+type:TEXT_BOX,name:robotName
 type:COUNTER,name:timer
 type:SLIDER,name:defense
 type:RADIO,name:something

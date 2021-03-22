@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,8 +49,8 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
             final String contents = text;
             //Suggested to replace previous with lambda
             mee.get().runOnUiThread(() -> {
-                TextView output = mee.get().findViewById(R.id.outPutConfig);
-                output.setText(contents);
+                //TextView output = mee.get().findViewById(R.id.outPutConfig);
+                //output.setText(contents);
                 Log.d("SET_TEXT", contents);
             });
         //End test showing contents on screen. Move to a UnitTest?
@@ -64,18 +65,27 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         //serialize to GSON
         String json = null;
         if (_questions != null) {
-            json = gson.toJson(_questions);
+            //json = gson.toJson(_questions);
         }
 
         //save GSON object to prefs
         SharedPreferences sharedPref = mee.get().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        if(json.length() != 0) {
-            editor.putString(mee.get().getString(R.string.Survey_Questions), json);
-        }
-        else {
-            Log.e("Config_Reader", "Gson string lenth zero, unable to save survey to prefs.");
-        }
+//        if(json.length() != 0) {
+//            editor.putString(mee.get().getString(R.string.Survey_Questions), json);
+//        }
+//        else {
+//            Log.e("Config_Reader", "Gson string lenth zero, unable to save survey to prefs.");
+//        }
+        mee.get().runOnUiThread(() -> {
+            LinearLayout layout =  mee.get().findViewById(R.id.layout);
+            _questions.get(0).setActivity(mee);
+            int id = _questions.get(0).makeView(layout);
+        });
+        mee.get().runOnUiThread(() -> {
+            _questions.get(0).saveViewData();
+            _questions.get(0).loadViewData("savedData");
+        });
     }
 
     //https://developer.android.com/training/data-storage/shared/documents-files#open

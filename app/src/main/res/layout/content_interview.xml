@@ -13,46 +13,10 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TeamName"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="45dp"
-                android:hint="@string/teamtxt" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/RobotName"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="139dp"
-                android:hint="@string/robottxt" />
-
-            <Button
-                android:id="@+id/saveInterview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:onClick="saveInterview"
-                android:text="@string/saveInterviewbtn" />
-
-            <Button
-                android:id="@+id/loadInterview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
-                android:onClick="getInterview"
-                android:text="@string/loadInterviewbtn" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/LoadTeamName"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="45dp"
-                android:hint="@string/teamtxt" />
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -65,15 +29,18 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Accept" />
+                    android:onClick="saveInterview"
+                    android:text="Save" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Refuse" />
+                    android:onClick="getConfigFile"
+                    android:text="LoadCSV" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

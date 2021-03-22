@@ -4,7 +4,7 @@ import android.widget.LinearLayout;
 
 import java.util.Map;
 
-public class Survey_Checkboxes extends Field implements Askable{
+public class Survey_Checkboxes extends Field{
     public Survey_Checkboxes(Map<String, String> map) {
         /*
         List desired parameters to be required or optional to be included in config.csv here:
@@ -20,8 +20,4 @@ public class Survey_Checkboxes extends Field implements Askable{
         super(map);
     }
 
-    @Override
-    public LinearLayout makeView() {
-        return null;
-    }
 }
