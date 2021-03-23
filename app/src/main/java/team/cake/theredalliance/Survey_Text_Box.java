@@ -1,5 +1,6 @@
 package team.cake.theredalliance;
 
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -40,19 +41,13 @@ public class Survey_Text_Box extends Field implements Askable {
         EditText editText = new EditText(_activity.get());
         LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        editText.setId(_id);
-
-        TextInputLayout textInputLayout = new TextInputLayout(_activity.get());
-        LinearLayout.LayoutParams textInputLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+                ViewGroup.MarginLayoutParams.WRAP_CONTENT );
+        editText.setId(_id);
+        editText.setHint("name");
+        editText.setLayoutParams(editTextParams);
 
-        textInputLayout.setLayoutParams(textInputLayoutParams);
-        textInputLayout.addView(editText, editTextParams);
-        textInputLayout.setHint("hint");
-
-        layout.addView(textInputLayout);
+        layout.addView(editText);
         return _id;
     }
     @Override
@@ -60,6 +55,7 @@ public class Survey_Text_Box extends Field implements Askable {
         EditText textView = _activity.get().findViewById(_id);
         _data = textView.getText().toString();
     }
+    @Override
     public void loadViewData(String data){
         EditText textView = _activity.get().findViewById(_id);
         textView.setText(_data + _data);
