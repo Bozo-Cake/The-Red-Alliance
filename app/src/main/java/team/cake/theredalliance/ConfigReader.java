@@ -65,7 +65,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         //serialize to GSON
         String json = null;
         if (_questions != null) {
-            //json = gson.toJson(_questions);
+            json = gson.toJson(_questions);
         }
 
         //save GSON object to prefs
