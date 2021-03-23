@@ -36,7 +36,6 @@ public class Survey_Radio extends Field implements Askable{
                 LinearLayout.LayoutParams.MATCH_PARENT));
         textView.setText(_name);
         layout.addView(textView);
-        //TODO make sure each view is not displaying over top of another view.
         EditText editText = new EditText(_activity.get());
         LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
