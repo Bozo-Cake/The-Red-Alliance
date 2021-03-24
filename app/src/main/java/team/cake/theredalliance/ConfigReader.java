@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         _uri = uri;
         _numbEntries = 0;
     }
-    public void run() {
+    public void run2() {
         try {
             Log.d("TAG", "About to read config file");
             readTextFromUri();
@@ -76,8 +77,32 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         else {
             Log.e("Config_Reader", "Gson string lenth zero, unable to save survey to prefs.");
         }
-    }
 
+    }
+    public void run(){
+        try {
+            Log.d("TAG", "About to read config file");
+            readTextFromUri();
+            Log.d("TAG", "Done Reading config file");
+        } catch (IOException e) {e.printStackTrace();}
+
+        //Test by showing contents on screen
+        String text = "Entries: " + _numbEntries + "\n";
+        for (int i = 0; i < _numbEntries; i++) { //Don't do this on UI thread.
+            text += _entries.get(i) + "\n";
+        }
+        _questions = new ArrayList<>();
+        for (int i = 0; i < _numbEntries; i++) {
+            //Parse each object
+            _questions.add(parseEntryIntoObject(_entries.get(i)));
+            int finalI = i;
+            mee.get().runOnUiThread(() -> {
+                LinearLayout layout =  mee.get().findViewById(R.id.layout);
+                _questions.get(finalI).setActivity(mee);
+                int id = _questions.get(finalI).makeView(layout);
+            });
+        }
+    }
     //https://developer.android.com/training/data-storage/shared/documents-files#open
     private void readTextFromUri() throws IOException {
         try (InputStream inputStream =

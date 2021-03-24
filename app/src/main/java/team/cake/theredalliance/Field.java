@@ -1,12 +1,15 @@
 package team.cake.theredalliance;
 
-import java.util.List;
+import android.app.Activity;
+import android.widget.LinearLayout;
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
 public abstract class Field {
     String _name;
     SurveyQuestionsType _type;
     Map<String,String> _extras;
+    WeakReference<Activity> _activity;
 
     Field(Map<String,String> map) {
         _name = map.get("name");
@@ -20,4 +23,9 @@ public abstract class Field {
     String getName() { return _name; }
     SurveyQuestionsType getType() { return _type; }
     Map<String,String> getExtras() { return _extras; }
+
+    public void setActivity(WeakReference<Activity> activity){ _activity = activity; }
+    public Integer makeView(LinearLayout layout) { return null; }
+    public void saveViewData() {    }
+    public void loadViewData(String data) {    }
 }
