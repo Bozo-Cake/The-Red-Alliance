@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ConfigReader implements Runnable {//ToDo: Move to separate thread, currently running on UI Thread?
+public class ConfigReader  {
     Uri _uri;
     List<String> _entries = new ArrayList<>();
     List<Field> _questions = null;
@@ -104,7 +104,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         }
     }
     //https://developer.android.com/training/data-storage/shared/documents-files#open
-    private void readTextFromUri() throws IOException {
+    public void readTextFromUri() throws IOException {
         try (InputStream inputStream =
                      mee.get().getContentResolver().openInputStream(_uri);
              BufferedReader reader = new BufferedReader(
@@ -117,7 +117,7 @@ public class ConfigReader implements Runnable {//ToDo: Move to separate thread, 
         }
     }
 
-    private Field parseEntryIntoObject(String entry) {
+    public Field parseEntryIntoObject(String entry) {
         /******************************************************
             Read string (single line from config file)
             Split on commas with zero or more whitespace, and equal signs with any surrounding whitespace.

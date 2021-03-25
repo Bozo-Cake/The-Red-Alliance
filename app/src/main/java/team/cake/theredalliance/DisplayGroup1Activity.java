@@ -40,8 +40,8 @@ public class DisplayGroup1Activity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri);
-                Thread thread = new Thread(configReader);
+                interview _interview = new interview(this, uri);
+                Thread thread = new Thread(_interview);
                 thread.start();
             }
         }

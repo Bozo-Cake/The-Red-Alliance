@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Map;
 
 public class InterviewActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class InterviewActivity extends AppCompatActivity {
     SharedPreferences _privateSP;
     Json _json;
     Map<String, ?> _keys;
+    List<Field> _questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,10 @@ public class InterviewActivity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri);
-                Thread thread = new Thread(configReader);
+                interview interview = new interview(this, uri);
+                Thread thread = new Thread(interview);
                 thread.start();
+                _questions = interview._questions;
             }
         }
     }
@@ -76,31 +79,9 @@ public class InterviewActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void saveInterview(View view){
-        EditText teamNameElement = findViewById(R.id.TeamName);
-        String teamNametext = teamNameElement.getText().toString().toLowerCase();
-        EditText robotNameElement = findViewById(R.id.toolbar);
-        String robotNametext = robotNameElement.getText().toString();
-        //TODO We need to make sure we capture all of the UI elements for the interview.
-
-        interview inter = new interview(teamNametext, robotNametext, 200, 96);
-        _json.saveInterview(inter, teamNametext, _privateSP);
-        Log.wtf("group2","WTF I saved your interview!");
-        //Toast letting the user know the team was saved.
-        Toast.makeText(getApplicationContext(),"Team Saved",Toast.LENGTH_SHORT).show();
-
-        teamNameElement.setText("");
-        robotNameElement.setText("");
+        //TODO Add save functionality
     }
     public void getInterview(View view){
-        EditText teamNameElement = findViewById(R.id.toolbar);
-        String teamNametext = teamNameElement.getText().toString().toLowerCase();
-
-        interview inter = _json.readInterview(teamNametext, _privateSP);
-        EditText teamName = findViewById(R.id.TeamName);
-        //TODO make sure inter is not null before trying to set anything.
-        teamName.setText(inter._team);
-        EditText robotName = findViewById(R.id.toolbar);
-        robotName.setText(inter._robot);
-        teamNameElement.setText("");
+        //TODO Add load functionality
     }
 }
