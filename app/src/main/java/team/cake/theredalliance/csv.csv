@@ -1,5 +1,2 @@
 type:CHECKBOXES,name:abilities,0:Climb,1:pick_up,2:sideways,3:auto-aim
-type:TEXT_BOX,name:robotName
-type:COUNTER,name:timer
-type:SLIDER,name:defense
-type:RADIO,name:something
+type:COUNTER,name:fouls

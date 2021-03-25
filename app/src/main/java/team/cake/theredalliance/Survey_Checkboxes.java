@@ -12,16 +12,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class Survey_Checkboxes extends Field {
-    String _questions[];
 
     public Survey_Checkboxes(Map<String, String> map) {
-        /*
-        List desired parameters to be required or optional to be included in config.csv here:
-        Excludes parameters handled by parent class [Field]: name, type
-        -List<String> selections    (required)
-        -Number of checkboxes       (required)
-        -default selections?        (optional)
-        */
         super(map);
     }
 
