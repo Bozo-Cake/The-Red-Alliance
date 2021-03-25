@@ -18,22 +18,6 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        //toolBarLayout.setTitle(getTitle());
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Link to team page?", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        //ToDo: Research/Spike Palette-> (Layouts, Containers)
-        //addButton();//example showing buttons
-        //addCheckBox();
     }
     public void survey(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
