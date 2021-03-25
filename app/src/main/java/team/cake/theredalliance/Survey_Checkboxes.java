@@ -24,22 +24,16 @@ public class Survey_Checkboxes extends Field{
         super(map);
     }
     @Override
-    public void makeView(ViewGroup parentView) {
-        //Get the common stuff out of the way
+    public void makeView(LinearLayout layout) {
         LinearLayout view = generateContainer();
-        //Loop through all Key:Value pairs where 0 <= Key <= N and add another CheckBox View
         for (int i = 0; _map.containsKey(String.valueOf(i)); i++) {
-            //New CheckBox; set parameters
             CheckBox box = new CheckBox(_activity.get());
             box.setTag(_map.get(String.valueOf(i)));
             box.setText(_map.get(String.valueOf(i)));
             box.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
-            //Add to Question Root View (Currently LinearLayout)
             view.addView(box);
-            //Can you add it to the Root Container passed in to makeView(thisParameter)?
-            parentView.addView(view);
         }
     }
 

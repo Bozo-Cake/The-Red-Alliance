@@ -44,7 +44,7 @@ public class InterviewActivity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri, "Questions");
+                ConfigReader configReader = new ConfigReader(this, uri);
                 Thread thread = new Thread(configReader);
                 thread.start();
             }

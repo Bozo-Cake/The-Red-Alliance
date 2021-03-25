@@ -18,13 +18,7 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
-        GenerateSurvey();
     }
-
-    private void GenerateSurvey() {
-
-    }
-
     public void survey(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -1,7 +1,6 @@
 package team.cake.theredalliance;
 
 import android.app.Activity;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,7 +42,7 @@ public abstract class Field {
     Map<String,String> getConfig() { return _map; }
 
     public void setActivity(WeakReference<Activity> activity){ _activity = activity; }
-    public void makeView(ViewGroup parentView) {    }
+    public Integer makeView(LinearLayout layout) { return null; }
     public void saveViewData() {    }
     public void loadViewData(String data) {    }
 }
