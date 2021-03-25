@@ -40,7 +40,7 @@ public class DisplayGroup1Activity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri);
+                ConfigReader configReader = new ConfigReader(this, uri, "Questions");
                 Thread thread = new Thread(configReader);
                 thread.start();
             }
