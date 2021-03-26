@@ -37,4 +37,9 @@ public class Survey_Radio extends Field{
 
         parent.addView(editText);
     }
+
+    @Override
+    public String saveViewData() {
+        return null;
+    }
 }

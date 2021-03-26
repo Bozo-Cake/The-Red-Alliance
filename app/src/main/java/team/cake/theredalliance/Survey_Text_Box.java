@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class Survey_Text_Box extends Field implements Askable {
-    String _data;
     int _id;
     public Survey_Text_Box(Map<String,String> map) {
         /*
@@ -26,7 +25,7 @@ public class Survey_Text_Box extends Field implements Askable {
     }
 
     @Override
-    public Integer makeView(LinearLayout layout) {
+    public void makeView(ViewGroup layout) {
         Random rand = new Random(); //instance of random class
         int upperbound = 25;
         //generate random values from 0-24
@@ -43,20 +42,16 @@ public class Survey_Text_Box extends Field implements Askable {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.MarginLayoutParams.WRAP_CONTENT );
         editText.setId(_id);
-        editText.setHint("name");
+        if(_data != null){
+            editText.setText(_data);
+        }
         editText.setLayoutParams(editTextParams);
 
         layout.addView(editText);
-        return _id;
     }
     @Override
-    public void saveViewData(){
+    public String saveViewData(){
         EditText textView = _activity.get().findViewById(_id);
-        _data = textView.getText().toString();
-    }
-    @Override
-    public void loadViewData(String data){
-        EditText textView = _activity.get().findViewById(_id);
-        textView.setText(_data + _data);
+        return textView.getText().toString();
     }
 }

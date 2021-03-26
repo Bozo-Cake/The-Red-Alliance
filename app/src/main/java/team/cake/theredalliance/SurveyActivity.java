@@ -36,7 +36,7 @@ public class SurveyActivity extends AppCompatActivity {
             questions = sharedPref.getStringSet("Config_Questions", null);
         }
 
-        LinearLayout survey = findViewById(R.id.ScrollContainer);
+        LinearLayout survey = findViewById(R.id.MatchSurvey);
         SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
     }
 
@@ -65,34 +65,12 @@ public class SurveyActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    //added this
-    //https://www.tutlane.com/tutorial/android/android-view-and-viewgroup-with-examples
-    private void addButton() {
-        ConstraintLayout layout = findViewById(R.id.SurveyLayout);
-        LinearLayout survey = findViewById(R.id.ScrollContainer);
-        for (int i = 0; i < 50; i++) {
-            LinearLayout row = new LinearLayout(this);
-            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            for (int j = 0; j < 4; j++) {
-                Button btnTag = new Button(this);
-                btnTag.setLayoutParams(new LinearLayout.LayoutParams
-                        (LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT));
-                btnTag.setText("Button " + (j + 1 + (i * 4)));
-                btnTag.setId(j + 1 + (i * 4));
-                row.addView(btnTag);
-            }
-            survey.addView(row);
-        }
-        setContentView(layout);
-    }
     public void getConfigFile() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
     }
-    //@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("data", data.toString());

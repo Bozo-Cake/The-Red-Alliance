@@ -8,7 +8,7 @@ import android.widget.TextView;
 import java.util.Map;
 import java.util.Random;
 
-public class Survey_Switches extends Field implements Askable{
+public class Survey_Switches extends Field{
     String _data;
     int _id;
     public Survey_Switches(Map<String, String> map) {
@@ -24,8 +24,7 @@ public class Survey_Switches extends Field implements Askable{
         //pass on remaining items to parent class.
         super(map);
     }
-    @Override
-    public Integer makeView(LinearLayout layout) {
+    public void makeView(ViewGroup layout) {
         Random rand = new Random(); //instance of random class
         int upperbound = 25;
         //generate random values from 0-24
@@ -46,16 +45,10 @@ public class Survey_Switches extends Field implements Askable{
         editText.setLayoutParams(editTextParams);
 
         layout.addView(editText);
-        return _id;
     }
     @Override
-    public void saveViewData(){
+    public String saveViewData(){
         EditText textView = _activity.get().findViewById(_id);
-        _data = textView.getText().toString();
-    }
-    @Override
-    public void loadViewData(String data){
-        EditText textView = _activity.get().findViewById(_id);
-        textView.setText(_data + _data);
+        return textView.getText().toString();
     }
 }

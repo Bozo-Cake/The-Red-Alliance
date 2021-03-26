@@ -42,4 +42,9 @@ public class Survey_Counter extends Field {
 
         parent.addView(view);
     }
+
+    @Override
+    public String saveViewData() {
+        return null;
+    }
 }

@@ -14,12 +14,26 @@ import java.util.Map;
 import java.util.Set;
 
 public class SurveyQuestionParser {
+    private List<Field> _questions;
     public SurveyQuestionParser(Activity pass, LinearLayout survey, Set<String> questions) {
         Iterator<String> it = questions.iterator();
+        _questions = new ArrayList<>();
         while(it != null && it.hasNext()){
             Field q = parseEntryIntoObject(it.next());
             q.setActivity(new WeakReference<>(pass));
             q.makeView(survey);
+            _questions.add(q);
+        }
+    }
+    //public Question getter, or method(s) to load/save in this class.
+    public void saveEverything() {
+        for(int i = 0; i < _questions.size(); i++) {
+            _questions.get(i).saveViewData();
+        }
+    }
+    public void loadEverything() {
+        for(int i = 0; i < _questions.size(); i++) {
+            _questions.get(i).loadViewData();
         }
     }
     private Field parseEntryIntoObject(String entry) {

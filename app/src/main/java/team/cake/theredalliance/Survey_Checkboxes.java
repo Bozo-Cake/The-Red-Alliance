@@ -31,4 +31,9 @@ public class Survey_Checkboxes extends Field {
         }
         parent.addView(view);
     }
+
+    @Override
+    public String saveViewData() {
+        return null;
+    }
 }

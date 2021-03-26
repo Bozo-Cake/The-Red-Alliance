@@ -3,6 +3,7 @@ package team.cake.theredalliance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,27 +12,32 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class InterviewActivity extends AppCompatActivity {
-    private static final int FILE_REQUEST = 1;
-    SharedPreferences _privateSP;
-    Json _json;
-    Map<String, ?> _keys;
-    List<Field> _questions;
+    private static final int FILE_REQUEST = 2;
+    Set<String> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interview);
-        _privateSP = getPreferences(MODE_PRIVATE);
-        _json = new Json();
-        _keys = _privateSP.getAll();
+        SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
+        questions = sharedPref.getStringSet("Interview_Questions", null);
+        while(questions == null) {
+            Toast.makeText(this, "No Saved Team Interview Config File, Please Load one", Toast.LENGTH_LONG).show();
+            getConfigFile();
+            questions = sharedPref.getStringSet("Config_Questions", null);
+        }
+        LinearLayout survey = findViewById(R.id.InterviewContainer);
+        SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
     }
-    public void getConfigFile(View view) {
+    public void getConfigFile() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");//text/csv
@@ -46,10 +52,9 @@ public class InterviewActivity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                interview interview = new interview(this, uri);
-                Thread thread = new Thread(interview);
+                ConfigReader configReader = new ConfigReader(this, uri, "Interview_Questions");
+                Thread thread = new Thread(configReader);
                 thread.start();
-                _questions = interview._questions;
             }
         }
     }
