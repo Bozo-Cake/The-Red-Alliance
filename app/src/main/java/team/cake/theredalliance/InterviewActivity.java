@@ -44,7 +44,7 @@ public class InterviewActivity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri);
+                ConfigReader configReader = new ConfigReader(this, uri, "Survey_Questions");
                 Thread thread = new Thread(configReader);
                 thread.start();
             }
@@ -74,33 +74,5 @@ public class InterviewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
-    public void saveInterview(View view){
-        EditText teamNameElement = findViewById(R.id.TeamName);
-        String teamNametext = teamNameElement.getText().toString().toLowerCase();
-        EditText robotNameElement = findViewById(R.id.toolbar);
-        String robotNametext = robotNameElement.getText().toString();
-        //TODO We need to make sure we capture all of the UI elements for the interview.
-
-        interview inter = new interview(teamNametext, robotNametext, 200, 96);
-        _json.saveInterview(inter, teamNametext, _privateSP);
-        Log.wtf("group2","WTF I saved your interview!");
-        //Toast letting the user know the team was saved.
-        Toast.makeText(getApplicationContext(),"Team Saved",Toast.LENGTH_SHORT).show();
-
-        teamNameElement.setText("");
-        robotNameElement.setText("");
-    }
-    public void getInterview(View view){
-        EditText teamNameElement = findViewById(R.id.toolbar);
-        String teamNametext = teamNameElement.getText().toString().toLowerCase();
-
-        interview inter = _json.readInterview(teamNametext, _privateSP);
-        EditText teamName = findViewById(R.id.TeamName);
-        //TODO make sure inter is not null before trying to set anything.
-        teamName.setText(inter._team);
-        EditText robotName = findViewById(R.id.toolbar);
-        robotName.setText(inter._robot);
-        teamNameElement.setText("");
     }
 }

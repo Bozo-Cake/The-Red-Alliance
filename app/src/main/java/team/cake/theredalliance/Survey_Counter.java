@@ -1,6 +1,8 @@
 package team.cake.theredalliance;
 
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -8,55 +10,36 @@ import android.widget.TextView;
 import java.util.Map;
 import java.util.Random;
 
-public class Survey_Counter extends Field implements Askable {
-    String _data;
-    int _id;
+public class Survey_Counter extends Field {
+
     public Survey_Counter(Map<String, String> map) {
-        /*
-        List desired parameters to be required or optional to be included in config.csv here:
-        Excludes parameters handled by parent class [Field]: name, type
-        -Int data (required)
-        -Count by (optional if default to 1) (extra optional: multiple count by buttons - +1, +5, +10)
-        -Count when long press - timer while holding down button to time events (optional)
-        */
-
-        //ToDo: Extract Counter data here.
-
-        //pass on remaining items to parent class.
         super(map);
     }
     @Override
-    public Integer makeView(LinearLayout layout) {
-        Random rand = new Random(); //instance of random class
-        int upperbound = 25;
-        //generate random values from 0-24
-        _id = rand.nextInt(upperbound);
-        TextView textView = new TextView(_activity.get());
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
-        textView.setText(_name);
-        layout.addView(textView);
-        EditText editText = new EditText(_activity.get());
-        LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                ViewGroup.MarginLayoutParams.WRAP_CONTENT );
-        editText.setId(_id);
-        editText.setHint("name");
-        editText.setLayoutParams(editTextParams);
+    public void makeView(ViewGroup parent) {
+        LinearLayout view = generateContainer();
+        //overide height to specific size
+        //view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150));
+        //Number Text Box
+        EditText counter = new EditText(_activity.get());
+        counter.setInputType(2);//2 = TYPE_CLASS_NUMBER
+        counter.setLayoutParams(new LinearLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+        counter.setTextSize(25f);//Don't know if this works...
+        view.addView(counter);
 
-        layout.addView(editText);
-        return _id;
-    }
-    @Override
-    public void saveViewData(){
-        EditText textView = _activity.get().findViewById(_id);
-        _data = textView.getText().toString();
-    }
-    @Override
-    public void loadViewData(String data){
-        EditText textView = _activity.get().findViewById(_id);
-        textView.setText(_data + _data);
+        //Buttons to the right to increase, decrease
+        Button up = new Button(_activity.get());
+        up.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        up.setText("+");//ToDo: Doesn't work, but does on the down button!!
+        up.setTextSize(20f);
+        view.addView(up);
+
+        Button down = new Button(_activity.get());
+        up.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        up.setText("-");
+        up.setTextSize(20f);
+        view.addView(down);
+
+        parent.addView(view);
     }
 }
