@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.Map;
 
 public class InterviewActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class InterviewActivity extends AppCompatActivity {
     SharedPreferences _privateSP;
     Json _json;
     Map<String, ?> _keys;
+    List<Field> _questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,10 @@ public class InterviewActivity extends AppCompatActivity {
                 Log.d("FIND_PATH","Uri is null");
             }
             else {
-                ConfigReader configReader = new ConfigReader(this, uri, "Survey_Questions");
-                Thread thread = new Thread(configReader);
+                interview interview = new interview(this, uri);
+                Thread thread = new Thread(interview);
                 thread.start();
+                _questions = interview._questions;
             }
         }
     }
@@ -74,5 +77,11 @@ public class InterviewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+    public void saveInterview(View view){
+        //TODO Add save functionality
+    }
+    public void getInterview(View view){
+        //TODO Add load functionality
     }
 }
