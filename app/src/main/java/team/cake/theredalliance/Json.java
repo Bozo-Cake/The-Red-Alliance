@@ -42,6 +42,7 @@ public class Json {
 
         prefsEditor.putString(key, String.valueOf(_json.toJson(contents)));
         prefsEditor.commit();
+        Log.i(className, "Successfully saved Interview data");
     }
     public HashMap readFromSharedPref(String key, SharedPreferences sprefs){
 
@@ -49,6 +50,7 @@ public class Json {
         Gson _json = builder.create();
 
         String json = sprefs.getString(key, "");
+        Log.i(className, "Successfully Loaded Interview data");
         return _json.fromJson(json, HashMap.class);
     }
     public String readJson(String filename){
@@ -66,23 +68,4 @@ public class Json {
         Log.i(className, "Successfully read data");
         return contents;
     }
-//    public void saveInterview(interview inter, String key, SharedPreferences SP){
-//        SharedPreferences.Editor prefsEditor = SP.edit();
-//        GsonBuilder builder = new GsonBuilder();
-//        Gson _json = builder.create();
-//
-//        prefsEditor.putString(key, String.valueOf(_json.toJson(inter)));
-//        prefsEditor.commit();
-//        Log.i(className, "Successfully saved Interview data");
-//    }
-//    public interview readInterview(String key, SharedPreferences SP){
-//        interview contents = null;
-//        GsonBuilder builder = new GsonBuilder();
-//        Gson _json = builder.create();
-//
-//        String json = SP.getString(key, "");
-//        contents = _json.fromJson(json, interview.class);
-//        Log.i(className, "Successfully Loaded Interview data");
-//        return contents;
-//    }
 }
