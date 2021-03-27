@@ -27,8 +27,7 @@ public class Survey_Text_Box extends Field implements Askable {
     @Override
     public void makeView(ViewGroup layout) {
         Random rand = new Random(); //instance of random class
-        int upperbound = 25;
-        //generate random values from 0-24
+        int upperbound = 2500;
         _id = rand.nextInt(upperbound);
         TextView textView = new TextView(_activity.get());
         textView.setLayoutParams(new LinearLayout.LayoutParams(

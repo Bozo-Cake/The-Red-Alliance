@@ -1,6 +1,7 @@
 package team.cake.theredalliance;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.LinearLayout;
 
@@ -8,6 +9,7 @@ import com.google.common.base.Splitter;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,11 @@ import java.util.Set;
 
 public class SurveyQuestionParser {
     private List<Field> _questions;
+    private Map<String, String> _savedData;
+    private Json _json;
     public SurveyQuestionParser(Activity pass, LinearLayout survey, Set<String> questions) {
+        _savedData = new HashMap<>();
+        _json = new Json();
         Iterator<String> it = questions.iterator();
         _questions = new ArrayList<>();
         while(it != null && it.hasNext()){
@@ -26,15 +32,18 @@ public class SurveyQuestionParser {
         }
     }
     //public Question getter, or method(s) to load/save in this class.
-    public void saveEverything() {
+    public void saveEverything(String key, SharedPreferences sharedPrefs) {
+        _savedData = new HashMap<>();
         for(int i = 0; i < _questions.size(); i++) {
-            _questions.get(i).saveViewData();
+            Field question = _questions.get(i);
+            String data = question.saveViewData();
+            _savedData.put(question._name, data);
         }
+
+        _json.writeToSharedPref(_savedData, key, sharedPrefs);
     }
-    public void loadEverything() {
-        for(int i = 0; i < _questions.size(); i++) {
-            _questions.get(i).loadViewData();
-        }
+    public void loadEverything(String key, SharedPreferences sharedPref) {
+        _savedData = _json.readFromSharedPref(key, sharedPref);
     }
     private Field parseEntryIntoObject(String entry) {
         /******************************************************

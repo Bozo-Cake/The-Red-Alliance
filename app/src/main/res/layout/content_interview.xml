@@ -30,14 +30,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="saveInterview"
-                    android:text="Save" />
+                    android:text="@string/saveInterviewbtn" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="getConfigFile"
-                    android:text="LoadCSV" />
+                    android:text="@string/loadInterviewbtn" />
 
             </LinearLayout>
 

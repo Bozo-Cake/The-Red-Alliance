@@ -22,6 +22,7 @@ import java.util.Set;
 public class InterviewActivity extends AppCompatActivity {
     private static final int FILE_REQUEST = 2;
     Set<String> questions;
+    SurveyQuestionParser _parser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,13 @@ public class InterviewActivity extends AppCompatActivity {
         questions = sharedPref.getStringSet("Interview_Questions", null);
         while(questions == null) {
             Toast.makeText(this, "No Saved Team Interview Config File, Please Load one", Toast.LENGTH_LONG).show();
-            getConfigFile();
-            questions = sharedPref.getStringSet("Config_Questions", null);
+            getConfigFile(null);
+            questions = sharedPref.getStringSet("Interview_Questions", null);
         }
         LinearLayout survey = findViewById(R.id.InterviewContainer);
-        SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
+        _parser = new SurveyQuestionParser(this, survey, questions);
     }
-    public void getConfigFile() {
+    public void getConfigFile(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");//text/csv
@@ -53,8 +54,11 @@ public class InterviewActivity extends AppCompatActivity {
             }
             else {
                 ConfigReader configReader = new ConfigReader(this, uri, "Interview_Questions");
-                Thread thread = new Thread(configReader);
-                thread.start();
+                configReader.storeConfig();
+                SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
+                questions = sharedPref.getStringSet("Interview_Questions", null);
+                LinearLayout survey = findViewById(R.id.InterviewContainer);
+                _parser = new SurveyQuestionParser(this, survey, questions);
             }
         }
     }
@@ -84,9 +88,11 @@ public class InterviewActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void saveInterview(View view){
-        //TODO Add save functionality
+        SharedPreferences sharedPref = this.getSharedPreferences("Saved_Results", Context.MODE_PRIVATE);
+        _parser.saveEverything("Interview_Results", sharedPref);
     }
     public void getInterview(View view){
-        //TODO Add load functionality
+        SharedPreferences sharedPref = this.getSharedPreferences("Saved_Results", Context.MODE_PRIVATE);
+        _parser.loadEverything("Interview_Results", sharedPref);
     }
 }

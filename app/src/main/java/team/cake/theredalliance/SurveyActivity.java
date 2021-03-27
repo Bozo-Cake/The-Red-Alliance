@@ -81,8 +81,7 @@ public class SurveyActivity extends AppCompatActivity {
             }
             else {
                 ConfigReader configReader = new ConfigReader(this, uri, "Survey_Questions");
-                Thread thread = new Thread(configReader);
-                thread.start();
+                configReader.storeConfig();
             }
         }
     }
