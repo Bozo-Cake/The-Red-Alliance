@@ -1,2 +1,5 @@
 type:CHECKBOXES,name:abilities,0:Climb,1:pick_up,2:sideways,3:auto-aim
 type:COUNTER,name:fouls
+
+1234:bots of prey
+4567:ammonites
