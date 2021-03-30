@@ -24,11 +24,14 @@ public class SurveyQuestionParser {
         _json = new Json();
         Iterator<String> it = questions.iterator();
         _questions = new ArrayList<>();
+        survey.removeAllViews();
         while(it != null && it.hasNext()){
             Field q = parseEntryIntoObject(it.next());
             q.setActivity(new WeakReference<>(pass));
+            String data = ""; //TODO Parse _savedData and if there is saved data display it.
             q.makeView(survey);
             _questions.add(q);
+
         }
     }
     //public Question getter, or method(s) to load/save in this class.

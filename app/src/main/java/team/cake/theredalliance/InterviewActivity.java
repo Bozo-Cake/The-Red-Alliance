@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -88,11 +89,15 @@ public class InterviewActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void saveInterview(View view){
+        EditText editText = findViewById(R.id.teamName);
+        String key = editText.getText().toString();
         SharedPreferences sharedPref = this.getSharedPreferences("Saved_Results", Context.MODE_PRIVATE);
-        _parser.saveEverything("Interview_Results", sharedPref);
+        _parser.saveEverything(key, sharedPref);
     }
     public void getInterview(View view){
+        TextView editText = findViewById(R.id.teamName);
+        String key = editText.getText().toString();
         SharedPreferences sharedPref = this.getSharedPreferences("Saved_Results", Context.MODE_PRIVATE);
-        _parser.loadEverything("Interview_Results", sharedPref);
+        _parser.loadEverything(key, sharedPref);
     }
 }

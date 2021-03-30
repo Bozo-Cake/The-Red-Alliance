@@ -31,14 +31,14 @@ public class Survey_Text_Box extends Field implements Askable {
         _id = rand.nextInt(upperbound);
         TextView textView = new TextView(_activity.get());
         textView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
         textView.setText(_name);
         layout.addView(textView);
         EditText editText = new EditText(_activity.get());
         LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
                 ViewGroup.MarginLayoutParams.WRAP_CONTENT );
         editText.setId(_id);
         if(_data != null){

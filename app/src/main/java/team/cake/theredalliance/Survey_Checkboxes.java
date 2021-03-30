@@ -39,8 +39,22 @@ public class Survey_Checkboxes extends Field {
 
     @Override
     public String saveViewData() {
+        String result = "";
         LinearLayout layout = _activity.get().findViewById(_id);
-        //TODO Get child checkboxes and check if they are checked. Return string with name of checkbox and if they are checked.
-        return "Checked";
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof CheckBox) {
+                CheckBox cb = (CheckBox) v;
+                String text = cb.getText().toString();
+                if(cb.isChecked()){
+                    result += text + " Checked, ";
+                }
+                else{
+                    result += text + " Unchecked, ";
+                }
+                //validate your EditText here
+            }
+        }
+        return result;
     }
 }
