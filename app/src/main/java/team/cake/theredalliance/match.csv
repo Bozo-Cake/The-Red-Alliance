@@ -1,0 +1,8 @@
+type:CHECKBOXES,name:abilities,0:Climb,1:pick_up,2:sideways,3:auto-aim
+type:COUNTER,name:penalties
+type:SLIDER,name:points_scored
+type:RADIO,name:play type,0:Offense,1:Deffense,2:Disabled,3:Useless
+type:TEXT_BOX,name:comments
+type:CHIPS,name:features,0:pickup,1:shoot,2:omni Drive,3:auto aim,4:small,5:autonomous
+type:SWITCHES,name:other,0:autonomous,1:play,2:final element
+type:CHIPS,name:coolitites,0:abc,1:def,2:ghi

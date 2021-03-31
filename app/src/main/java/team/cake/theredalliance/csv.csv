@@ -1,6 +1,0 @@
-type:CHECKBOXES,name:abilities,0:Climb,1:pick_up,2:sideways,3:auto-aim
-type:TEXT_BOX,name:Robot
-type:TEXT_BOX,name:Robot1
-type:TEXT_BOX,name:Robot2
-type:TEXT_BOX,name:Robot3
-type:TEXT_BOX,name:Robot4
