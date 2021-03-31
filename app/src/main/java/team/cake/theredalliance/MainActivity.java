@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
     public void survey(View view) {
-        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+        Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
     }
     public void interview(View view) {
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void matches(View view) {
-        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+        Intent intent = new Intent(this, MatchActivity.class);
         startActivity(intent);
     }
     public void teams(View view) {

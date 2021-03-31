@@ -31,13 +31,15 @@ public class InterviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_interview);
         SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
         questions = sharedPref.getStringSet("Interview_Questions", null);
-        while(questions == null) {
+        if(questions == null) {
             Toast.makeText(this, "No Saved Team Interview Config File, Please Load one", Toast.LENGTH_LONG).show();
             getConfigFile(null);
             questions = sharedPref.getStringSet("Interview_Questions", null);
         }
-        LinearLayout survey = findViewById(R.id.InterviewContainer);
-        _parser = new SurveyQuestionParser(this, survey, questions);
+        else{
+            LinearLayout survey = findViewById(R.id.InterviewContainer);
+            _parser = new SurveyQuestionParser(this, survey, questions);
+        }
     }
     public void getConfigFile(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
