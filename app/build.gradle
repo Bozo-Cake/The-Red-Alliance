@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.guava:guava:24.1-jre'
     implementation 'com.android.support:multidex:2.0.1'
+    //implementation 'com.github.Jay-Goo:RangeSeekBar:Release Version'//for pretty SeekBar/Slider
 }

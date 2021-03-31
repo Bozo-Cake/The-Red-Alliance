@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -30,14 +31,15 @@ public class SurveyActivity extends AppCompatActivity {
     private void GenerateSurvey() {
         SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
         Set<String> questions = sharedPref.getStringSet("Survey_Questions", null);
-        while(questions == null) {
+        if (questions == null) {
             Toast.makeText(this, "No Saved Match Survey Config File, Please Load one", Toast.LENGTH_LONG).show();
             getConfigFile();
             questions = sharedPref.getStringSet("Config_Questions", null);
         }
-
-        LinearLayout survey = findViewById(R.id.MatchSurvey);
-        SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
+        else {
+            LinearLayout survey = findViewById(R.id.MatchSurvey);
+            SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
+        }
     }
 
     public void survey(MenuItem view) {
@@ -70,6 +72,9 @@ public class SurveyActivity extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
+    }
+    public void getConfigFile(View view) {
+        getConfigFile();
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

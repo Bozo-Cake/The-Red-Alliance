@@ -26,6 +26,7 @@ public class Survey_Checkboxes extends Field {
         LinearLayout view = generateContainer();
         for (int i = 0; _map.containsKey(String.valueOf(i)); i++) {
             CheckBox box = new CheckBox(_activity.get());
+            //ToDo: box.setLayoutParams(new LinearLayout.LayoutParams(160, 160));
             box.setTag(_map.get(String.valueOf(i)));
             box.setText(_map.get(String.valueOf(i)));
             box.setLayoutParams(new LinearLayout.LayoutParams(

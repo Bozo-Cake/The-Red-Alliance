@@ -32,7 +32,7 @@ public abstract class Field implements Askable{
         TextView textView = new TextView(_activity.get());
         textView.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
+                LinearLayout.LayoutParams.WRAP_CONTENT));
         textView.setText(_name);
         view.addView(textView);
 

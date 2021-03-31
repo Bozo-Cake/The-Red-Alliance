@@ -3,6 +3,7 @@ package team.cake.theredalliance;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.google.common.base.Splitter;
@@ -32,6 +33,13 @@ public class SurveyQuestionParser {
             q.makeView(survey);
             _questions.add(q);
 
+        }
+        //https://stackoverflow.com/questions/13903611/reverse-the-direction-of-a-linearlayout
+        for(int k = survey.getChildCount()-1 ; k >= 0 ; k--)
+        {
+            View item = survey.getChildAt(k);
+            survey.removeViewAt(k);
+            survey.addView(item);
         }
     }
     //public Question getter, or method(s) to load/save in this class.
@@ -77,6 +85,8 @@ public class SurveyQuestionParser {
                 return new Survey_Switches(map);
             case RADIO:
                 return new Survey_Radio(map);
+            case CHIPS:
+                return new Survey_Chips(map);
             default:
                 Log.e("parseEntryIntoObject", "Unable to create object");
         }
