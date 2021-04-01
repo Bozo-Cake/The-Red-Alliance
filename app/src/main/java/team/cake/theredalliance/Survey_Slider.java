@@ -1,9 +1,15 @@
 package team.cake.theredalliance;
 
+import android.os.Build;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+
+import com.google.android.material.slider.Slider;
 
 import java.util.Map;
 import java.util.Random;
@@ -24,38 +30,21 @@ public class Survey_Slider extends Field implements Askable{
         //pass on remaining items to parent class.
         super(map);
     }
-    @Override
-    public Integer makeView(LinearLayout layout) {
-        Random rand = new Random(); //instance of random class
-        int upperbound = 25;
-        //generate random values from 0-24
-        _id = rand.nextInt(upperbound);
-        TextView textView = new TextView(_activity.get());
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
-        textView.setText(_name);
-        layout.addView(textView);
-        EditText editText = new EditText(_activity.get());
-        LinearLayout.LayoutParams editTextParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                ViewGroup.MarginLayoutParams.WRAP_CONTENT );
-        editText.setId(_id);
-        editText.setHint("name");
-        editText.setLayoutParams(editTextParams);
 
-        layout.addView(editText);
-        return _id;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void makeView(ViewGroup parent) {
+        LinearLayout view = generateContainer();
+        SeekBar seekBar = new SeekBar(_activity.get());
+        seekBar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
+        seekBar.setMin(0);
+        seekBar.setMax(100);
+        view.addView(seekBar);
+
+        parent.addView(view);
     }
-    @Override
-    public void saveViewData(){
+
+    public String saveViewData(){
         EditText textView = _activity.get().findViewById(_id);
-        _data = textView.getText().toString();
-    }
-    @Override
-    public void loadViewData(String data){
-        EditText textView = _activity.get().findViewById(_id);
-        textView.setText(_data + _data);
+        return textView.getText().toString();
     }
 }

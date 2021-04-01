@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Json {
     String className = "JSON";
@@ -31,21 +34,24 @@ public class Json {
             e.printStackTrace();
         }
     }
-    public void writeJsonSharedPref(String contents, String filename, SharedPreferences sprefs){
+
+    public void writeToSharedPref(Map<String, String> contents, String key, SharedPreferences sprefs){
         SharedPreferences.Editor prefsEditor = sprefs.edit();
         GsonBuilder builder = new GsonBuilder();
         Gson _json = builder.create();
 
-        prefsEditor.putString(filename, String.valueOf(_json.toJson(contents)));
+        prefsEditor.putString(key, String.valueOf(_json.toJson(contents)));
         prefsEditor.commit();
+        Log.i(className, "Successfully saved Interview data");
     }
-    public String readJsonSharedPref(String filename, SharedPreferences sprefs){
+    public HashMap readFromSharedPref(String key, SharedPreferences sprefs){
 
         GsonBuilder builder = new GsonBuilder();
         Gson _json = builder.create();
 
-        String json = sprefs.getString(filename, "");
-        return _json.fromJson(json, String.class);
+        String json = sprefs.getString(key, "");
+        Log.i(className, "Successfully Loaded Interview data");
+        return _json.fromJson(json, HashMap.class);
     }
     public String readJson(String filename){
         String contents = "Default String";
@@ -60,25 +66,6 @@ public class Json {
             e.printStackTrace();
         }
         Log.i(className, "Successfully read data");
-        return contents;
-    }
-    public void saveInterview(interview inter, String key, SharedPreferences SP){
-        SharedPreferences.Editor prefsEditor = SP.edit();
-        GsonBuilder builder = new GsonBuilder();
-        Gson _json = builder.create();
-
-        prefsEditor.putString(key, String.valueOf(_json.toJson(inter)));
-        prefsEditor.commit();
-        Log.i(className, "Successfully saved Interview data");
-    }
-    public interview readInterview(String key, SharedPreferences SP){
-        interview contents = null;
-        GsonBuilder builder = new GsonBuilder();
-        Gson _json = builder.create();
-
-        String json = SP.getString(key, "");
-        contents = _json.fromJson(json, interview.class);
-        Log.i(className, "Successfully Loaded Interview data");
         return contents;
     }
 }

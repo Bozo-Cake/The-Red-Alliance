@@ -8,11 +8,12 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-public abstract class Field {
+public abstract class Field implements Askable{
     String _name;
     SurveyQuestionsType _type;
     Map<String,String> _map;
     WeakReference<Activity> _activity;
+    String _data;
 
     Field(Map<String,String> map) {
         _name = map.get("name");
@@ -31,7 +32,7 @@ public abstract class Field {
         TextView textView = new TextView(_activity.get());
         textView.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
+                LinearLayout.LayoutParams.WRAP_CONTENT));
         textView.setText(_name);
         view.addView(textView);
 
@@ -43,7 +44,5 @@ public abstract class Field {
     Map<String,String> getConfig() { return _map; }
 
     public void setActivity(WeakReference<Activity> activity){ _activity = activity; }
-    public void makeView(ViewGroup layout) {    }
-    public void saveViewData() {    }
-    public void loadViewData(String data) {    }
+    public void makeView(ViewGroup layout, String data) {_data = data; makeView(layout);}
 }

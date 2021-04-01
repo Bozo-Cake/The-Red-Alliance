@@ -8,5 +8,6 @@ public enum SurveyQuestionsType {
     SLIDER,
     RADIO,
     CHECKBOXES,
-    SWITCHES
+    SWITCHES,
+    CHIPS
 }

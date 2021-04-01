@@ -1,30 +1,28 @@
 package team.cake.theredalliance;
 
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SeekBar;
-import android.widget.TextView;
+
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.Map;
-import java.util.Random;
 
-public class Survey_Radio extends Field{
+public class Survey_Chips extends Field{
     String _data;
     int _id;
-    public Survey_Radio(Map<String, String> map) {
+    Survey_Chips(Map<String, String> map) {
         super(map);
     }
 
     public void makeView(ViewGroup parent) {
         LinearLayout view = generateContainer();
         view.setId(_id);
-        RadioGroup group = new RadioGroup(_activity.get());
+        ChipGroup group = new ChipGroup(_activity.get());
         for (int i = 0; _map.containsKey(String.valueOf(i)); i++) {
-            RadioButton button = new RadioButton(_activity.get());
+            Chip button = new Chip(_activity.get());
+            button.setCheckable(true);
             //ToDo: box.setLayoutParams(new LinearLayout.LayoutParams(160, 160));
             button.setTag(_map.get(String.valueOf(i)));
             button.setText(_map.get(String.valueOf(i)));
@@ -37,9 +35,9 @@ public class Survey_Radio extends Field{
         view.addView(group);
         parent.addView(view);
     }
-
     @Override
-    public String saveViewData() {
-        return null;
+    public String saveViewData(){
+        EditText textView = _activity.get().findViewById(_id);
+        return textView.getText().toString();
     }
 }

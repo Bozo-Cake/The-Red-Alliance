@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class ConfigReader implements Runnable {
+public class ConfigReader {
     Uri _uri;
     final String TAG = "Config_Reader";
     private WeakReference<Activity> mee;
@@ -35,7 +35,7 @@ public class ConfigReader implements Runnable {
         _uri = uri;
         _key = key;
     }
-    public void run() {
+    public void storeConfig() {
         try {
             Log.d("TAG", "About to read config file");
             readTextFromUri();
@@ -56,7 +56,7 @@ public class ConfigReader implements Runnable {
     }
 
     //https://developer.android.com/training/data-storage/shared/documents-files#open
-    private void readTextFromUri() throws IOException {
+    public void readTextFromUri() throws IOException {
         try (InputStream inputStream =
                      mee.get().getContentResolver().openInputStream(_uri);
              BufferedReader reader = new BufferedReader(

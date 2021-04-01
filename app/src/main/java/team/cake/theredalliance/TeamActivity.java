@@ -2,6 +2,7 @@ package team.cake.theredalliance;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -35,7 +36,6 @@ public class TeamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
         loadTeams();
-
     }
     private void loadTeams() {
         SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
@@ -69,28 +69,7 @@ public class TeamActivity extends AppCompatActivity {
             teamPref.edit().apply();
         }
     }
-            //while((it != null) && it.hasNext()) {
-                //Log.e("Contents", it.next());
-                //it.next();
-                //    //ToDo: save returned results how you want
-                //Map<String,String> map = Splitter.on(":").trimResults().withKeyValueSeparator(" ").split(it.next());
-                //    Log.e("Contents", map.toString());
-                //    LinearLayout row = new LinearLayout(this);
-                //    row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                //    for (int j = 0; j < 5; j++) {
-                //        View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
-                //        TextView teamNumber = icon.findViewById(R.id.teamNumber);
-                //        Log.d("HELP", teamNumber.getText().toString());
-                //        //ToDo: set number from list
-                //        teamNumber.setText(String.valueOf(j + j));
-                //        //ToDo: set id same as number
-                //        icon.setId(j);
-                //        row.addView(icon);
-                //    }
-                //    list.addView(row);
-                //}
-
-    public void survey(MenuItem view) {
+    public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -100,8 +79,8 @@ public class TeamActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
