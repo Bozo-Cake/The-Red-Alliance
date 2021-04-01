@@ -129,7 +129,9 @@ public class ConfigMenu extends AppCompatActivity {
                 }
                 ConfigReader configReader = new ConfigReader(this, uri, _key);
                 configReader.storeConfig();
-                handleReferences(true);
+                if(_referral != null) {
+                    handleReferences(true);
+                }
             }
         }
     }
