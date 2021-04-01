@@ -35,23 +35,23 @@ public class TeamActivity extends AppCompatActivity {
     }
     private void loadTeams() {
         SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
-        sharedPref.edit().clear().commit();
+        //sharedPref.edit().clear().commit();
         Set<String> teamNames = sharedPref.getStringSet(KEY, null);
 
         if(teamNames == null) {
             Toast.makeText(this, "No Saved Team List Config File, Please Load one", Toast.LENGTH_LONG).show();
             getConfigFile();
-            teamNames = sharedPref.getStringSet(KEY, null);
+            //teamNames = sharedPref.getStringSet(KEY, null);
         }else {
             //ParseSharedPreferences
-            //Iterator<String> it = questions.iterator();
+            Iterator<String> it = teamNames.iterator();
             ScrollView root = findViewById(R.id.listOfTeams);
             LinearLayout list = new LinearLayout(this);
             list.setOrientation(LinearLayout.VERTICAL);
-            for (Iterator<String> it = teamNames.iterator(); it != null && it.hasNext(); ) {
-                Log.e("Contents",it.toString());
-                //ToDo: save returned results how you want
-                //Map<String,String> map = Splitter.on(":").trimResults().withKeyValueSeparator(":").split(it.next());
+            while((it != null) && it.hasNext()) {
+                String lines[] = it.next().split(":");
+                Log.e("Number", lines[0]);
+                Log.e("Name", lines[1]);
                 LinearLayout row = new LinearLayout(this);
                 row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 for (int j = 0; j < 5; j++) {
@@ -59,9 +59,9 @@ public class TeamActivity extends AppCompatActivity {
                     TextView teamNumber = icon.findViewById(R.id.teamNumber);
                     Log.d("HELP", teamNumber.getText().toString());
                     //ToDo: set number from list
-                    teamNumber.setText(String.valueOf(j + j));
+                    teamNumber.setText(String.valueOf(lines[1]));
                     //ToDo: set id same as number
-                    icon.setId(j);
+                    icon.setId(Integer.parseInt(lines[0]));
                     row.addView(icon);
                 }
                 list.addView(row);
@@ -69,6 +69,27 @@ public class TeamActivity extends AppCompatActivity {
             root.addView(list);
         }
     }
+            //while((it != null) && it.hasNext()) {
+                //Log.e("Contents", it.next());
+                //it.next();
+                //    //ToDo: save returned results how you want
+                //Map<String,String> map = Splitter.on(":").trimResults().withKeyValueSeparator(" ").split(it.next());
+                //    Log.e("Contents", map.toString());
+                //    LinearLayout row = new LinearLayout(this);
+                //    row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                //    for (int j = 0; j < 5; j++) {
+                //        View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
+                //        TextView teamNumber = icon.findViewById(R.id.teamNumber);
+                //        Log.d("HELP", teamNumber.getText().toString());
+                //        //ToDo: set number from list
+                //        teamNumber.setText(String.valueOf(j + j));
+                //        //ToDo: set id same as number
+                //        icon.setId(j);
+                //        row.addView(icon);
+                //    }
+                //    list.addView(row);
+                //}
+
     public void survey(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
