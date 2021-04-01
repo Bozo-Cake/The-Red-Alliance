@@ -1,9 +1,12 @@
 package team.cake.theredalliance;
 
+import android.os.Build;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -11,18 +14,10 @@ import java.util.Map;
 import java.util.Random;
 
 public class Survey_Text_Box extends Field implements Askable {
-    int _id;
-    public Survey_Text_Box(Map<String,String> map) {
-        /*
-        List desired parameters to be required or optional to be included in config.csv here:
-        Excludes parameters handled by parent class [Field]: name, type
-        -Max Length (optional)
-        */
-        //ToDo: Extract TextBox data here.
+    private final String TAG = "Survey_TextBox";
 
-        //pass on remaining items to parent class.
-        super(map);
-    }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public Survey_Text_Box(Map<String,String> map) { super(map); }
 
     @Override
     public void makeView(ViewGroup layout) {

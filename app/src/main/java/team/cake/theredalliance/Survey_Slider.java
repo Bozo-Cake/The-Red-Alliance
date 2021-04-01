@@ -1,9 +1,13 @@
 package team.cake.theredalliance;
 
 import android.os.Build;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -15,19 +19,10 @@ import java.util.Map;
 import java.util.Random;
 
 public class Survey_Slider extends Field implements Askable{
-    String _data;
-    int _id;
-    public Survey_Slider(Map<String, String> map) {
-        /*
-        List desired parameters to be required or optional to be included in config.csv here:
-        Excludes parameters handled by parent class [Field]: name, type
-        -Range Beginning - autodetect type  (required)
-        -Range End       - autodetect type  (required)
-        -Default Value                      (optional)
-        */
-        //ToDo: Extract Slider data here.
+    private final String TAG = "Survey_Slider";
 
-        //pass on remaining items to parent class.
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public Survey_Slider(Map<String, String> map) {
         super(map);
     }
 
@@ -43,8 +38,21 @@ public class Survey_Slider extends Field implements Askable{
         parent.addView(view);
     }
 
+    @Override
     public String saveViewData(){
-        EditText textView = _activity.get().findViewById(_id);
-        return textView.getText().toString();
+        StringBuilder result = new StringBuilder(getName());
+        LinearLayout layout = _activity.get().findViewById(_id);
+        View view = layout.getChildAt(1);
+
+        if(view instanceof SeekBar) {
+            SeekBar item = (SeekBar)view;
+            String text = String.valueOf(item.getProgress());
+            result.append(",value,").append(text);
+        }
+        if (result.toString() == getName()) {
+            result.append(",null");
+            Log.d(TAG, "EditText Not Found in " + getName());
+        }
+        return result.toString();
     }
 }

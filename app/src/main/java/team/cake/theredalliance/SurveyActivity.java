@@ -35,6 +35,7 @@ public class SurveyActivity extends AppCompatActivity {
             Toast.makeText(this, "No Saved Match Survey Config File, Please Load one", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, ConfigMenu.class);
             intent.putExtra("FROM", "MATCH");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
         else {

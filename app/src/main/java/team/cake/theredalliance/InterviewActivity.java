@@ -35,6 +35,7 @@ public class InterviewActivity extends AppCompatActivity {
             Toast.makeText(this, "No Saved Team Interview Config File, Please Load one", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, ConfigMenu.class);
             intent.putExtra("FROM", "INTERVIEW");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
         else{

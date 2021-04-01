@@ -1,5 +1,8 @@
 package team.cake.theredalliance;
 
+import android.os.Build;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -9,12 +12,18 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
 import java.util.Map;
 import java.util.Random;
 
 public class Survey_Radio extends Field{
-    String _data;
-    int _id;
+    private final String TAG = "Survey_Radio";
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public Survey_Radio(Map<String, String> map) {
         super(map);
     }
@@ -39,7 +48,22 @@ public class Survey_Radio extends Field{
     }
 
     @Override
-    public String saveViewData() {
-        return null;
+    public String saveViewData(){
+        StringBuilder result = new StringBuilder(getName());
+        LinearLayout layout = _activity.get().findViewById(_id);
+        View view = layout.getChildAt(1);
+
+        if(view instanceof RadioGroup) {
+            RadioGroup group = (RadioGroup)view;
+            int itemID= group.getCheckedRadioButtonId();
+            RadioButton item = group.findViewById(itemID);
+            String text = item.getText().toString();
+            result.append(",selected,").append(text);
+        }
+        if (result.toString() == getName()) {
+            result.append(",null");
+            Log.d(TAG, "RadioGroup/Selection Not Found in " + getName());
+        }
+        return result.toString();
     }
 }

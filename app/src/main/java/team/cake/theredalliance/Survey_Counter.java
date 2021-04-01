@@ -1,5 +1,7 @@
 package team.cake.theredalliance;
 
+import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -8,11 +10,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
 import java.util.Map;
 import java.util.Random;
 
 public class Survey_Counter extends Field {
+    private final String TAG = "Survey_Counter";
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public Survey_Counter(Map<String, String> map) {
         super(map);
     }
@@ -59,6 +65,20 @@ public class Survey_Counter extends Field {
 
     @Override
     public String saveViewData() {
-        return null;
+        StringBuilder result = new StringBuilder(getName());
+        LinearLayout layout = _activity.get().findViewById(_id);
+        for (int i = 0; i < layout.getChildCount()-1; i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof EditText) {
+                EditText item = (EditText) v;
+                String text = item.getText().toString();
+                result.append(",").append(text);
+            }
+        }
+        if (result.toString() == getName()) {
+            result.append(",null");
+            Log.d(TAG, "No EditText found in " + getName());
+        }
+        return result.toString();
     }
 }
