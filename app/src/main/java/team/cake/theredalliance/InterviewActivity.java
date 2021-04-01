@@ -48,24 +48,6 @@ public class InterviewActivity extends AppCompatActivity {
         intent.setType("text/*");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
     }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("data", data.toString());
-        if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri == null) {
-                Log.d("FIND_PATH","Uri is null");
-            }
-            else {
-                ConfigReader configReader = new ConfigReader(this, uri, "Interview_Questions");
-                configReader.storeConfig();
-                SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
-                questions = sharedPref.getStringSet("Interview_Questions", null);
-                LinearLayout survey = findViewById(R.id.InterviewContainer);
-                _parser = new SurveyQuestionParser(this, survey, questions);
-            }
-        }
-    }
     public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

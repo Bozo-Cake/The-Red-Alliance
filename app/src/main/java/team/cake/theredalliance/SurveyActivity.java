@@ -68,27 +68,4 @@ public class SurveyActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void getConfigFile() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/*");//text/csv
-        startActivityForResult(intent, FILE_REQUEST);
-    }
-    public void getConfigFile(View view) {
-        getConfigFile();
-    }
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("data", data.toString());
-        if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri == null) {
-                Log.d("FIND_PATH","Uri is null");
-            }
-            else {
-                ConfigReader configReader = new ConfigReader(this, uri, "Survey_Questions");
-                configReader.storeConfig();
-            }
-        }
-    }
 }
