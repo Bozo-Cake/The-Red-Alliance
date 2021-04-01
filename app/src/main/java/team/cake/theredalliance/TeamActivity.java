@@ -31,22 +31,25 @@ public class TeamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
         loadTeams();
+
     }
     private void loadTeams() {
         SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
-        Set<String> questions = sharedPref.getStringSet(KEY, null);
+        sharedPref.edit().clear().commit();
+        Set<String> teamNames = sharedPref.getStringSet(KEY, null);
 
-        if(questions == null) {
+        if(teamNames == null) {
             Toast.makeText(this, "No Saved Team List Config File, Please Load one", Toast.LENGTH_LONG).show();
             getConfigFile();
-            questions = sharedPref.getStringSet(KEY, null);
+            teamNames = sharedPref.getStringSet(KEY, null);
         }else {
             //ParseSharedPreferences
             //Iterator<String> it = questions.iterator();
             ScrollView root = findViewById(R.id.listOfTeams);
             LinearLayout list = new LinearLayout(this);
             list.setOrientation(LinearLayout.VERTICAL);
-            for (Iterator<String> it = questions.iterator(); it != null && it.hasNext(); ) {
+            for (Iterator<String> it = teamNames.iterator(); it != null && it.hasNext(); ) {
+                Log.e("Contents",it.toString());
                 //ToDo: save returned results how you want
                 //Map<String,String> map = Splitter.on(":").trimResults().withKeyValueSeparator(":").split(it.next());
                 LinearLayout row = new LinearLayout(this);
@@ -125,7 +128,7 @@ public class TeamActivity extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");//text/csv
         startActivityForResult(intent, FILE_REQUEST);
-    }
+}
     //@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
