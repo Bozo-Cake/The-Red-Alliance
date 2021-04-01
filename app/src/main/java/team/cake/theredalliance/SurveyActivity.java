@@ -33,8 +33,9 @@ public class SurveyActivity extends AppCompatActivity {
         Set<String> questions = sharedPref.getStringSet("Survey_Questions", null);
         if (questions == null) {
             Toast.makeText(this, "No Saved Match Survey Config File, Please Load one", Toast.LENGTH_LONG).show();
-            getConfigFile();
-            questions = sharedPref.getStringSet("Config_Questions", null);
+            Intent intent = new Intent(this, ConfigMenu.class);
+            intent.putExtra("FROM", "MATCH");
+            startActivity(intent);
         }
         else {
             LinearLayout survey = findViewById(R.id.MatchSurvey);
@@ -42,7 +43,7 @@ public class SurveyActivity extends AppCompatActivity {
         }
     }
 
-    public void survey(MenuItem view) {
+    public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -52,8 +53,8 @@ public class SurveyActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

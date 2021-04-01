@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    public void survey(View view) {
+    public void MatchReport(View view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
     }
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InterviewActivity.class);
         startActivity(intent);
     }
-    public void matches(View view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(View view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         startActivity(intent);
     }
     public void teams(View view) {
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    public void survey(MenuItem view) {
+    public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
     }
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InterviewActivity.class);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         startActivity(intent);
     }
     public void teams(MenuItem view) {

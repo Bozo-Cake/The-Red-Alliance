@@ -11,16 +11,16 @@
             android:onClick="teams"
             android:title="@string/Teams" />
         <item
-            android:id="@+id/nav_survey"
-            android:onClick="survey"
-            android:title="@string/Survey" />
+            android:id="@+id/nav_settings"
+            android:onClick="settings"
+            android:title="@string/Config" />
         <item
             android:id="@+id/nav_interview"
             android:onClick="interview"
-            android:title="@string/Interview" />
+            android:title="@string/TeamInterview" />
         <item
-            android:id="@+id/nav_matches"
-            android:onClick="matches"
-            android:title="@string/Matches" />
+            android:id="@+id/nav_survey"
+            android:onClick="MatchReport"
+            android:title="@string/MatchReport" />
     </group>
 </menu>

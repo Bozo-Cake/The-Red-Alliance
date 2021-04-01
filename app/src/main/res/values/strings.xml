@@ -31,4 +31,8 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_match">MatchActivity</string>
+    <string name="MatchSurvey">Match Survey</string>
+    <string name="TeamInterview">Team Interview</string>
+    <string name="Config">Config File Options</string>
+    <string name="MatchReport">Match Report</string>
 </resources>

@@ -19,7 +19,7 @@ public class TeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_team);
         loadTeams();
     }
-    public void survey(MenuItem view) {
+    public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -29,8 +29,8 @@ public class TeamActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

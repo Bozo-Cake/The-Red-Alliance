@@ -63,7 +63,7 @@ public class MatchActivity extends AppCompatActivity {
             }
         }
     }
-    public void survey(MenuItem view) {
+    public void MatchReport(MenuItem view) {
         Intent intent = new Intent(this, SurveyActivity .class);
         startActivity(intent);
     }
@@ -71,8 +71,8 @@ public class MatchActivity extends AppCompatActivity {
         Intent intent = new Intent(this, InterviewActivity.class);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, DisplayGroup1Activity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         startActivity(intent);
     }
     public void teams(MenuItem view) {

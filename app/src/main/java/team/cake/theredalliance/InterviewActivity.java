@@ -33,8 +33,9 @@ public class InterviewActivity extends AppCompatActivity {
         questions = sharedPref.getStringSet("Interview_Questions", null);
         if(questions == null) {
             Toast.makeText(this, "No Saved Team Interview Config File, Please Load one", Toast.LENGTH_LONG).show();
-            getConfigFile(null);
-            questions = sharedPref.getStringSet("Interview_Questions", null);
+            Intent intent = new Intent(this, ConfigMenu.class);
+            intent.putExtra("FROM", "INTERVIEW");
+            startActivity(intent);
         }
         else{
             LinearLayout survey = findViewById(R.id.InterviewContainer);
@@ -65,8 +66,8 @@ public class InterviewActivity extends AppCompatActivity {
             }
         }
     }
-    public void survey(MenuItem view) {
-        Intent intent = new Intent(this, SurveyActivity .class);
+    public void MatchReport(MenuItem view) {
+        Intent intent = new Intent(this, SurveyActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
@@ -75,8 +76,8 @@ public class InterviewActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-    public void matches(MenuItem view) {
-        Intent intent = new Intent(this, MatchActivity.class);
+    public void settings(MenuItem view) {
+        Intent intent = new Intent(this, ConfigMenu.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
