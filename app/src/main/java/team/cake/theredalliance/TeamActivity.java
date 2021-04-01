@@ -16,9 +16,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayout;
 import com.google.common.base.Splitter;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +29,7 @@ import java.util.Set;
 public class TeamActivity extends AppCompatActivity {
     private final int FILE_REQUEST = 3;
     private final String KEY = "TEAMS_LIST";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,32 +45,28 @@ public class TeamActivity extends AppCompatActivity {
         if(teamNames == null) {
             Toast.makeText(this, "No Saved Team List Config File, Please Load one", Toast.LENGTH_LONG).show();
             getConfigFile();
-            //teamNames = sharedPref.getStringSet(KEY, null);
         }else {
-            //ParseSharedPreferences
             Iterator<String> it = teamNames.iterator();
             ScrollView root = findViewById(R.id.listOfTeams);
-            LinearLayout list = new LinearLayout(this);
-            list.setOrientation(LinearLayout.VERTICAL);
+            FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
+            flexboxLayout.setFlexDirection(FlexDirection.ROW);
+            View view = flexboxLayout.getChildAt(0);
+            SharedPreferences teamPref = this.getSharedPreferences("Teams_List", Context.MODE_PRIVATE);
             while((it != null) && it.hasNext()) {
                 String lines[] = it.next().split(":");
                 Log.e("Number", lines[0]);
                 Log.e("Name", lines[1]);
-                LinearLayout row = new LinearLayout(this);
-                row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                for (int j = 0; j < 5; j++) {
-                    View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
-                    TextView teamNumber = icon.findViewById(R.id.teamNumber);
-                    Log.d("HELP", teamNumber.getText().toString());
-                    //ToDo: set number from list
-                    teamNumber.setText(String.valueOf(lines[1]));
-                    //ToDo: set id same as number
-                    icon.setId(Integer.parseInt(lines[0]));
-                    row.addView(icon);
-                }
-                list.addView(row);
+                teamPref.edit().putString(lines[0],lines[1]);
+                View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
+                TextView teamNumber = icon.findViewById(R.id.teamNumber);
+                Log.d("HELP", teamNumber.getText().toString());
+                //ToDo: set number from list
+                teamNumber.setText(String.valueOf(lines[0]));
+                //ToDo: set id same as number
+                icon.setId(Integer.parseInt(lines[0]));
+                flexboxLayout.addView(icon);
             }
-            root.addView(list);
+            teamPref.edit().apply();
         }
     }
             //while((it != null) && it.hasNext()) {
