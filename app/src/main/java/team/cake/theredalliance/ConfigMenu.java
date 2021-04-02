@@ -3,18 +3,26 @@ package team.cake.theredalliance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class ConfigMenu extends AppCompatActivity {
     private final int MATCH = 0;
     private final int INTERVIEW = 1;
     private final int LIST = 2;
     SharedPreferences _prefs;
+    SharedPreferences _teamPrefs;
     String _referral;
 
     @Override
@@ -22,6 +30,8 @@ public class ConfigMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config_menu);
         _prefs = getSharedPreferences("Config_Files", 0);
+        _teamPrefs = getSharedPreferences("Teams_List", 0);
+
         Intent intent = getIntent();
         _referral = intent.getStringExtra("FROM");
         if(_referral != null) {
@@ -129,10 +139,29 @@ public class ConfigMenu extends AppCompatActivity {
                 }
                 ConfigReader configReader = new ConfigReader(this, uri, _key);
                 configReader.storeConfig();
+                if(requestCode == LIST){
+                    convertList();
+                }
                 if(_referral != null) {
                     handleReferences(true);
                 }
             }
         }
+    }
+
+    private void convertList() {
+        Set<String> teamNames = _prefs.getStringSet("Teams_List", null);
+        if (teamNames == null){
+            Log.e("ConfigMenu","Interprited Team Menu Missing");
+            return;
+        }
+        for (String teamName : teamNames) {
+            String[] lines = teamName.split(",");
+            System.out.println(Arrays.toString(lines));
+            _teamPrefs.edit().putString(lines[0], lines[1]).apply();
+        }
+        _teamPrefs.edit().apply();
+        Map<String, ?> map = _teamPrefs.getAll();
+        Log.d("ConfigMenu", String.valueOf(map.size()));
     }
 }
