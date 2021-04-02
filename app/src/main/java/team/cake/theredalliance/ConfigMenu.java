@@ -3,12 +3,17 @@ package team.cake.theredalliance;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class ConfigMenu extends AppCompatActivity {
     private final int MATCH = 0;
@@ -129,10 +134,31 @@ public class ConfigMenu extends AppCompatActivity {
                 }
                 ConfigReader configReader = new ConfigReader(this, uri, _key);
                 configReader.storeConfig();
+                if(requestCode == LIST){
+                    convertList();
+                }
                 if(_referral != null) {
                     handleReferences(true);
                 }
             }
         }
+    }
+
+    private void convertList() {
+        SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
+        SharedPreferences teamPref = this.getSharedPreferences("Teams_List", Context.MODE_PRIVATE);
+        Set<String> teamNames = sharedPref.getStringSet("Teams_List", null);
+        if (teamNames == null){
+            Log.e("ConfigMenu","Interprited Team Menu Missing");
+            return;
+        }
+        Iterator<String> it = teamNames.iterator();
+        while((it != null) && it.hasNext()) {
+            String[] lines = it.next().split(",");
+            Log.d("Number", lines[0]);
+            Log.d("Name", lines[1]);
+            teamPref.edit().putString(lines[0],lines[1]);
+        }
+        teamPref.edit().apply();
     }
 }

@@ -29,7 +29,7 @@ import java.util.Set;
 
 public class TeamActivity extends AppCompatActivity {
     private final int FILE_REQUEST = 3;
-    private final String KEY = "TEAMS_LIST";
+    private final String KEY = "Teams_List";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,35 +38,44 @@ public class TeamActivity extends AppCompatActivity {
         loadTeams();
     }
     private void loadTeams() {
-        SharedPreferences sharedPref = this.getSharedPreferences("Config_Files", Context.MODE_PRIVATE);
+        SharedPreferences teamPref = this.getSharedPreferences(KEY, Context.MODE_PRIVATE);
         //sharedPref.edit().clear().commit();
-        Set<String> teamNames = sharedPref.getStringSet(KEY, null);
+        Set<String> teamNames = teamPref.getStringSet(KEY, null);
 
-        if(teamNames == null) {
-            Toast.makeText(this, "No Saved Team List Config File, Please Load one", Toast.LENGTH_LONG).show();
-            getConfigFile();
-        }else {
-            Iterator<String> it = teamNames.iterator();
-            ScrollView root = findViewById(R.id.listOfTeams);
+        if (teamNames == null) {
+            Toast.makeText(this, "No Saved Team Config File, Please Load one", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, ConfigMenu.class);
+            intent.putExtra("FROM", "LIST");
+            startActivity(intent);
+        } else {
+            //Iterator<String> it = teamNames.iterator();
             FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
             flexboxLayout.setFlexDirection(FlexDirection.ROW);
-            View view = flexboxLayout.getChildAt(0);
-            SharedPreferences teamPref = this.getSharedPreferences("Teams_List", Context.MODE_PRIVATE);
-            while((it != null) && it.hasNext()) {
-                String lines[] = it.next().split(":");
-                Log.e("Number", lines[0]);
-                Log.e("Name", lines[1]);
-                teamPref.edit().putString(lines[0],lines[1]);
+            Map<String, ?> map = teamPref.getAll();
+            for (Map.Entry<String, ?> entry : map.entrySet()) {
                 View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
                 TextView teamNumber = icon.findViewById(R.id.teamNumber);
                 Log.d("HELP", teamNumber.getText().toString());
                 //ToDo: set number from list
-                teamNumber.setText(String.valueOf(lines[0]));
+                teamNumber.setText(entry.getKey());
                 //ToDo: set id same as number
-                icon.setId(Integer.parseInt(lines[0]));
+                icon.setId(Integer.parseInt(entry.getKey()));
                 flexboxLayout.addView(icon);
             }
-            teamPref.edit().apply();
+            //while((it != null) && it.hasNext()) {
+            //    String lines[] = it.next().split(",");
+            //    Log.e("Number", lines[0]);
+            //    Log.e("Name", lines[1]);
+            //    teamPref.edit().putString(lines[0],lines[1]);
+            //    View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
+            //    TextView teamNumber = icon.findViewById(R.id.teamNumber);
+            //    Log.d("HELP", teamNumber.getText().toString());
+            //    //ToDo: set number from list
+            //    teamNumber.setText(String.valueOf(lines[0]));
+            //    //ToDo: set id same as number
+            //    icon.setId(Integer.parseInt(lines[0]));
+            //    flexboxLayout.addView(icon);
+            //}
         }
     }
     public void MatchReport(MenuItem view) {
@@ -122,27 +131,5 @@ public class TeamActivity extends AppCompatActivity {
         }
         root.addView(list);
         //setContentView(root.getRootView());
-    }
-    public void getConfigFile() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/*");//text/csv
-        startActivityForResult(intent, FILE_REQUEST);
-}
-    //@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("data", data.toString());
-        if (requestCode == FILE_REQUEST && resultCode == Activity.RESULT_OK) {
-            Uri uri = data.getData();
-            if (uri == null) {
-                Log.d("FIND_PATH","Uri is null");
-            }
-            else {
-                ConfigReader configReader = new ConfigReader(this, uri, KEY);
-                Thread thread = new Thread(configReader);
-                thread.start();
-            }
-        }
     }
 }
