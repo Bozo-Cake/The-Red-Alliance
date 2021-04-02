@@ -40,9 +40,9 @@ public class TeamActivity extends AppCompatActivity {
     private void loadTeams() {
         SharedPreferences teamPref = this.getSharedPreferences(KEY, Context.MODE_PRIVATE);
         //sharedPref.edit().clear().commit();
-        Set<String> teamNames = teamPref.getStringSet(KEY, null);
+        Map<String, ?> map = teamPref.getAll();
 
-        if (teamNames == null) {
+        if (map.size() == 0) {
             Toast.makeText(this, "No Saved Team Config File, Please Load one", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, ConfigMenu.class);
             intent.putExtra("FROM", "LIST");
@@ -51,7 +51,6 @@ public class TeamActivity extends AppCompatActivity {
             //Iterator<String> it = teamNames.iterator();
             FlexboxLayout flexboxLayout = (FlexboxLayout) findViewById(R.id.flexbox_layout);
             flexboxLayout.setFlexDirection(FlexDirection.ROW);
-            Map<String, ?> map = teamPref.getAll();
             for (Map.Entry<String, ?> entry : map.entrySet()) {
                 View icon = getLayoutInflater().inflate(R.layout.team_icon_button, null);
                 TextView teamNumber = icon.findViewById(R.id.teamNumber);
