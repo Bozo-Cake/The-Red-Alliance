@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,10 +18,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="485dp"
                 android:layout_weight="1"
                 android:padding="6dp"
                 android:text="@string/Matches" />
+
             <EditText
                 android:id="@+id/teamName"
                 android:layout_width="match_parent"
@@ -60,17 +60,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
-        android:layout_width="96dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        android:onClick="getConfigFile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

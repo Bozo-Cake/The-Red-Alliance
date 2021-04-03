@@ -63,6 +63,7 @@ public class Survey_Checkboxes extends Field {
             result.append(",null");
             Log.d(TAG, "No CheckBoxes found in " + getName());
         }
+        Log.d("Saving_CheckBox", result.toString());
         return result.toString();
     }
 }

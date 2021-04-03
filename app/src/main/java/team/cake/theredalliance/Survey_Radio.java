@@ -64,6 +64,7 @@ public class Survey_Radio extends Field{
             result.append(",null");
             Log.d(TAG, "RadioGroup/Selection Not Found in " + getName());
         }
+        Log.d("Saving_Radio", result.toString());
         return result.toString();
     }
 }

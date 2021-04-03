@@ -53,6 +53,7 @@ public class Survey_Slider extends Field implements Askable{
             result.append(",null");
             Log.d(TAG, "EditText Not Found in " + getName());
         }
+        Log.d("Saving_SeekBar", result.toString());
         return result.toString();
     }
 }

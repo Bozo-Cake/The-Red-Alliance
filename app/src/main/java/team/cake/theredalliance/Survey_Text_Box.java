@@ -1,6 +1,7 @@
 package team.cake.theredalliance;
 
 import android.os.Build;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -45,7 +46,10 @@ public class Survey_Text_Box extends Field implements Askable {
     }
     @Override
     public String saveViewData(){
+        StringBuilder result = new StringBuilder(getName());
         EditText textView = _activity.get().findViewById(_id);
-        return textView.getText().toString();
+        result.append(",").append(textView.getText().toString());
+        Log.d("Saving_TextBox", result.toString());
+        return result.toString();
     }
 }

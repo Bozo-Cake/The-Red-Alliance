@@ -40,24 +40,14 @@ public class Survey_Counter extends Field {
         down.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         down.setText("-");
         down.setTextSize(20f);
-        down.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter.setText(String.valueOf(Integer.parseInt(counter.getText().toString()) - 1));
-            }
-        });
+        down.setOnClickListener(v -> counter.setText(String.valueOf(Integer.parseInt(counter.getText().toString()) - 1)));
         view.addView(down);
 
         Button up = new Button(_activity.get());
         up.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         up.setText("+");
         up.setTextSize(20f);
-        up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter.setText(String.valueOf(Integer.parseInt(counter.getText().toString()) + 1));
-            }
-        });
+        up.setOnClickListener(v -> counter.setText(String.valueOf(Integer.parseInt(counter.getText().toString()) + 1)));
         view.addView(up);
 
         parent.addView(view);
@@ -79,6 +69,7 @@ public class Survey_Counter extends Field {
             result.append(",null");
             Log.d(TAG, "No EditText found in " + getName());
         }
+        Log.d("Saving Counter", result.toString());
         return result.toString();
     }
 }

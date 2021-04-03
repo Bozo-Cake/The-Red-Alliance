@@ -68,6 +68,7 @@ public class Survey_Chips extends Field{
             result.append(",null");
             Log.d(TAG, "ChipGroup/Selection Not Found in " + getName());
         }
+        Log.d("Saving Chips", result.toString());
         return result.toString();
     }
 }

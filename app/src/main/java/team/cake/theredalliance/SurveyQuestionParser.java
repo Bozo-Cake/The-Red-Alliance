@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.google.common.base.Splitter;
@@ -35,12 +36,12 @@ public class SurveyQuestionParser {
 
         }
         //https://stackoverflow.com/questions/13903611/reverse-the-direction-of-a-linearlayout
-        for(int k = survey.getChildCount()-1 ; k >= 0 ; k--)
-        {
-            View item = survey.getChildAt(k);
-            survey.removeViewAt(k);
-            survey.addView(item);
-        }
+//        for(int k = survey.getChildCount()-1 ; k >= 0 ; k--)
+//        {
+//            View item = survey.getChildAt(k);
+//            survey.removeViewAt(k);
+//            survey.addView(item);
+//        }
     }
     //public Question getter, or method(s) to load/save in this class.
     public void saveEverything(String key, SharedPreferences sharedPrefs) {

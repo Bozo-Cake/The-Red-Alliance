@@ -1,9 +1,13 @@
 package team.cake.theredalliance;
 
 import android.os.Build;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 
@@ -33,8 +37,27 @@ public class Survey_Switches extends Field{
         parent.addView(view);
     }
     @Override
-    public String saveViewData(){
-        EditText textView = _activity.get().findViewById(_id);
-        return textView.getText().toString();
+    public String saveViewData() {
+        StringBuilder result = new StringBuilder(getName());
+        LinearLayout layout = _activity.get().findViewById(_id);
+        for (int i = 0; i < layout.getChildCount()-1; i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof Switch) {
+                Switch item = (Switch) v;
+                String text = item.getText().toString();
+                if(item.isChecked()){
+                    result.append(",").append(text).append(",true");
+                }
+                else{
+                    result.append(",").append(text).append(",false");
+                }
+            }
+        }
+        if (result.toString() == getName()) {
+            result.append(",null");
+            Log.d(TAG, "No Switches found in " + getName());
+        }
+        Log.d("Saving_Switches", result.toString());
+        return result.toString();
     }
 }

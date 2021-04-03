@@ -1,15 +1,11 @@
 package team.cake.theredalliance;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,11 +37,25 @@ public class SurveyActivity extends AppCompatActivity {
         else {
             LinearLayout survey = findViewById(R.id.MatchSurvey);
             SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
+            LinearLayout commands = new LinearLayout(this);
+            Button save = new Button(this);
+            save.setText("Save");
+            save.setOnClickListener(v -> save(v));
+            Button clear = new Button(this);
+            save.setText("Clear");
+            save.setOnClickListener(v -> clear(v));
         }
     }
 
+    private void save(View view) {
+    }
+    private void clear(View view) {
+        Intent intent = new Intent(this, SurveyActivity.class);
+        startActivity(intent);
+    }
+
     public void MatchReport(MenuItem view) {
-        Intent intent = new Intent(this, SurveyActivity .class);
+        Intent intent = new Intent(this, SurveyActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
