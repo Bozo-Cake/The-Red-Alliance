@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 
 public class SurveyActivity extends AppCompatActivity {
     private static final int FILE_REQUEST = 1;
+    private SurveyQuestionParser _parser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +38,17 @@ public class SurveyActivity extends AppCompatActivity {
         }
         else {
             LinearLayout survey = findViewById(R.id.MatchSurvey);
-            SurveyQuestionParser p = new SurveyQuestionParser(this, survey, questions);
-            LinearLayout commands = new LinearLayout(this);
-            Button save = new Button(this);
-            save.setText("Save");
-            save.setOnClickListener(v -> save(v));
-            Button clear = new Button(this);
-            save.setText("Clear");
-            save.setOnClickListener(v -> clear(v));
+            _parser = new SurveyQuestionParser(this, survey, questions);
         }
     }
 
-    private void save(View view) {
+    public void save(View view) {
+        EditText editText = findViewById(R.id.teamNumberField);
+        String key = editText.getText().toString();
+        SharedPreferences sharedPref = this.getSharedPreferences("Match_Results", Context.MODE_PRIVATE);
+        _parser.saveEverything(key, sharedPref);
     }
-    private void clear(View view) {
+    public void clear(View view) {
         Intent intent = new Intent(this, SurveyActivity.class);
         startActivity(intent);
     }

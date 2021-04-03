@@ -5,6 +5,7 @@
     android:id="@+id/SurveyLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="clear"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ScrollView
@@ -13,10 +14,22 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/MatchSurvey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/teamNumberField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <LinearLayout
+                android:id="@+id/MatchSurvey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,7 +42,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="saveMatch"
+                    android:onClick="save"
                     android:text="Save"
                     tools:ignore="ButtonStyle" />
 
@@ -37,9 +50,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="clear"
                     android:text="Clear"
                     tools:ignore="ButtonStyle" />
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

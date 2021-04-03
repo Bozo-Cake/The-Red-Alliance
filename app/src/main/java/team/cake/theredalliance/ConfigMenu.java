@@ -112,7 +112,7 @@ public class ConfigMenu extends AppCompatActivity {
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("data", data.toString());
+        //Log.i("data", data.toString());
         if (resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             if (uri == null) {
