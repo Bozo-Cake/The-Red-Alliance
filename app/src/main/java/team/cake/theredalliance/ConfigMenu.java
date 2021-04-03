@@ -71,9 +71,7 @@ public class ConfigMenu extends AppCompatActivity {
     public void loadMatchCSV(View view) {
         getConfigFile(MATCH);
     }
-    public void clearMatchPrefs(View view) {
-        clearPrefs(MATCH);
-    }
+    public void clearMatchPrefs(View view) { clearPrefs(MATCH); }
     public void loadInterviewCSV(View view) {
         getConfigFile(INTERVIEW);
     }
@@ -106,6 +104,7 @@ public class ConfigMenu extends AppCompatActivity {
             }
             case LIST: {
                 _prefs.edit().remove("Teams_List").apply();
+                _teamPrefs.edit().clear().apply();
                 break;
             }
         }
